@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Mdesign-Leitsystem" target="1.5" />
+      <module name="Mdesign-Leitsystem" target="6" />
     </bytecodeTargetLevel>
   </component>
 </project>

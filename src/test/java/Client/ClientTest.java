@@ -22,7 +22,7 @@ public class ClientTest {
         InetAddress IP = InetAddress.getByAddress(rawIP);
         Random random = new Random();
         int ranID = random.nextInt(100);
-        int port = random.nextInt(65535);
+        short port = (short) random.nextInt(65535);
 
         //Setter
         client.setId(ranID);
@@ -38,12 +38,12 @@ public class ClientTest {
     @Test
     public void isShouldReturnCorrectBytesCodeFromPort() {
         Client client = new Client();
-        client.setPort(8080);
+        client.setPort((short) 8080);
         byte[] port_in_bytes = new byte[]{(byte) 0x1F, (byte) 0x90};
         byte[] clientRawPort = client.getPortNumAsBytes();
         Assert.assertArrayEquals(port_in_bytes, clientRawPort);
         ByteBuffer buffer = ByteBuffer.wrap(port_in_bytes);
         short num = buffer.getShort();
-        Assert.assertEquals(num,8080);
+        Assert.assertEquals(num, 8080);
     }
 }

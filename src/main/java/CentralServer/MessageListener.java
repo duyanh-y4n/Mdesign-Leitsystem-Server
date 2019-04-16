@@ -16,12 +16,16 @@ public class MessageListener extends Thread {
         try {
             while (true){
                 String message = listener.getPacketBodyAsStr(20);
-                if (message.isEmpty()==false){
+                if (!message.isEmpty()){
                     System.out.println("Listening...:" + message);
                 }
             }
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public int getPort() {
+        return this.listener.getPort();
     }
 }
