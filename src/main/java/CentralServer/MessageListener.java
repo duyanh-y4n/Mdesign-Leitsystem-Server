@@ -30,7 +30,7 @@ public class MessageListener extends Thread {
                 request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
                 if (packetIsFromLeitsystemClient(request)) {
                     System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
-                    LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(request);
+                    LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.start();
                 }
             }

@@ -5,14 +5,14 @@ import com.y4n.UDP.UDPMulticastSender;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class MessageSender extends Thread {
+public class MessageMulticastSender extends Thread {
     private UDPMulticastSender sender;
 
-    public MessageSender() throws IOException {
+    public MessageMulticastSender() throws IOException {
         this.sender = new UDPMulticastSender(8081);
     }
 
-    public MessageSender(int port) throws IOException {
+    public MessageMulticastSender(int port) throws IOException {
         this.sender = new UDPMulticastSender(port);
     }
 

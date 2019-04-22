@@ -7,12 +7,20 @@ import Message.LeitsystemResponse;
 import Message.MessageConfig;
 import com.y4n.Utils.DataFormatUtils;
 
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 public class LeitsystemRequestHandler extends Thread {
+    private DatagramPacket requestPacket;
     private LeitsystemRequest request;
     private LeitsystemResponse response;
 
-    public LeitsystemRequestHandler(LeitsystemRequest request) {
-        this.request = request;
+    public LeitsystemRequestHandler(DatagramPacket requestPacket) {
+        this.requestPacket = requestPacket;
+        this.request = new LeitsystemRequest(requestPacket.getData());
+        this.request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
     }
 
     public void handleRequest() {
@@ -26,6 +34,7 @@ public class LeitsystemRequestHandler extends Thread {
                 break;
             case REGISTER_REQ:
                 System.out.println(ResponseID.REGISTER_ID_RES);
+                handleRegisterReq();
                 break;
             case UPDATE_CAR_STATE_REQ:
                 System.out.println(ResponseID.DRIVE_PERMISSTION_RES);
@@ -36,9 +45,18 @@ public class LeitsystemRequestHandler extends Thread {
         }
     }
 
-    public void sendResponse() {
-        this.response = new LeitsystemResponse("Response".getBytes());
-        System.out.println(DataFormatUtils.byteArrToStr(this.response.getRawContent()));
+    public void sendResponse() throws IOException {
+        MessageUnicastSender sender = new MessageUnicastSender();
+        sender.send(this.response.getRawContent(),this.requestPacket.getAddress(),this.requestPacket.getPort());
+    }
+
+    public void handleRegisterReq(){
+        byte[] header = this.request.getHeader();
+        header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
+        byte id = 0x01;
+        byte[] body = new byte[]{id};
+        this.response = new LeitsystemResponse(header,body);
+        System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
     }
 
     @Override

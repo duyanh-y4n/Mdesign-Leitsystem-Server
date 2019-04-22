@@ -4,6 +4,9 @@ import com.y4n.Utils.MessageUtils.Request;
 import com.y4n.Utils.MessageUtils.Response;
 
 public class LeitsystemResponse extends Response {
+    public static final byte TYPE_CONFIMATION = 0x11;
+    public static final byte TYPE_NORMAL = 0x12;
+
     public LeitsystemResponse(byte[] rawContent) {
         super(rawContent);
         this.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
