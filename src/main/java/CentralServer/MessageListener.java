@@ -1,10 +1,11 @@
 package CentralServer;
 
+import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
-import Message.LeitsystemResponse;
+import Message.MessageConfig;
 import com.y4n.UDP.UDPUnicast;
-import com.y4n.Utils.DataFormatUtils;
-import com.y4n.Utils.MessageUtils.RequestTypes;
+import com.y4n.Utils.MessageUtils.Enum.RequestType;
+import com.y4n.Utils.MessageUtils.Response;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -24,12 +25,13 @@ public class MessageListener extends Thread {
     public void run() {
         try {
             while (true) {
-                DatagramPacket packet = this.listener.getPacket(20);
-                if (packetIsFromLeitsystemClient(packet)) {
+                DatagramPacket packet = this.listener.getPacket(MessageConfig.MESSAGE_LENGTH);
+                LeitsystemRequest request = new LeitsystemRequest(packet.getData());
+                request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
+                if (packetIsFromLeitsystemClient(request)) {
                     System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
-                    LeitsystemRequest request = new LeitsystemRequest(packet.getData());
-                    LeitsystemResponse response = LeitsystemRequestHandler.handleRequest(request);
-                    System.out.println(DataFormatUtils.byteArrToStr(response.getRawContent()));
+                    LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(request);
+                    requestHandler.start();
                 }
             }
         } catch (Exception e) {
@@ -41,14 +43,20 @@ public class MessageListener extends Thread {
         return this.listener.getPort();
     }
 
-    private boolean packetIsFromLeitsystemClient(DatagramPacket packet) {
-        byte[] leitsystemRequestType = {RequestTypes.CREATE, RequestTypes.UPDATE, RequestTypes.READ, RequestTypes.DELETE};
-        short requestTypePosInHeader = 0;
-        for (int i = 0; i < leitsystemRequestType.length; i++) {
-            if (packet.getData()[requestTypePosInHeader] == leitsystemRequestType[i]) {
-                return true;
-            }
+    private boolean packetIsFromLeitsystemClient(LeitsystemRequest request) {
+        byte requestTypeCode = request.getHeader()[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER];
+        boolean requestTypeIsValid = false;
+        byte requestIDCode = request.getHeader()[MessageConfig.MESSAGE_ID_POSITION_IN_HEADER];
+        boolean requestIDIsValid = false;
+
+        for (RequestType validRequestType :
+                RequestType.values()) {
+            if (requestTypeCode == validRequestType.ordinal()) requestTypeIsValid = true;
         }
-        return false;
+        for (RequestID validRequestID :
+                RequestID.values()) {
+            if (requestIDCode == validRequestID.ordinal()) requestIDIsValid = true;
+        }
+        return requestIDIsValid && requestTypeIsValid;
     }
 }

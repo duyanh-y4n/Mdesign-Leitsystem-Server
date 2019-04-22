@@ -6,6 +6,7 @@ import com.y4n.Utils.MessageUtils.Response;
 public class LeitsystemResponse extends Response {
     public LeitsystemResponse(byte[] rawContent) {
         super(rawContent);
+        this.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
     }
 
     public LeitsystemResponse(byte[] header, byte[] body) {
