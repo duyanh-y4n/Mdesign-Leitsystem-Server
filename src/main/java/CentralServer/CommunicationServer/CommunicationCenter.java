@@ -1,5 +1,6 @@
-package CentralServer;
+package CentralServer.CommunicationServer;
 
+import CentralServer.ServerConfig;
 import com.y4n.Utils.NetworkUtils;
 
 import java.io.IOException;

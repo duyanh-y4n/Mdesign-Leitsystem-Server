@@ -1,5 +1,6 @@
-package CentralServer;
+package CentralServer.CommunicationServer;
 
+import CentralServer.LeitsystemRequestHandler;
 import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;
@@ -33,6 +34,7 @@ public class MessageListener extends Thread {
                     System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.start();
+                    System.out.println("Handling Request");
                 }
 // this case is only to test
 //                else if(packet.getData().toString().isEmpty()==false){

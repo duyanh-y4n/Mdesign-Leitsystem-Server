@@ -1,4 +1,4 @@
-import CentralServer.CommunicationCenter;
+import CentralServer.CommunicationServer.CommunicationCenter;
 
 import java.io.IOException;
 

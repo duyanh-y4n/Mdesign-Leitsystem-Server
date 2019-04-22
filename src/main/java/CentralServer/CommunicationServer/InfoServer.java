@@ -1,4 +1,4 @@
-package CentralServer;
+package CentralServer.CommunicationServer;
 
 import com.y4n.UDP.UDPMulticastSender;
 import com.y4n.Utils.DataFormatUtils;
