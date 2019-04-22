@@ -1,6 +1,7 @@
 package Client;
 
 import com.y4n.Utils.DataFormatUtils;
+import com.y4n.Utils.MessageUtils.Request;
 
 import java.net.InetAddress;
 
@@ -8,8 +9,17 @@ public class Client {
     private int id;
     private InetAddress IP;
     private short port;
+    private Request lastRequest;
 
     public Client() {
+    }
+
+    public Request getLastRequest() {
+        return this.lastRequest;
+    }
+
+    public void setLastRequest(Request lastRequest) {
+        this.lastRequest = lastRequest;
     }
 
     public short getPort() {

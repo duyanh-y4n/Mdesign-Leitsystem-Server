@@ -1,6 +1,9 @@
 package CentralServer;
 
+import Message.LeitsystemRequest;
+import Message.LeitsystemResponse;
 import com.y4n.UDP.UDPUnicast;
+import com.y4n.Utils.DataFormatUtils;
 import com.y4n.Utils.MessageUtils.RequestTypes;
 
 import java.io.IOException;
@@ -20,6 +23,9 @@ public class MessageListener extends Thread {
                 DatagramPacket packet = this.listener.getPacket(20);
                 if (packetIsFromLeitsystemClient(packet)) {
                     System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
+                    LeitsystemRequest request = new LeitsystemRequest(packet.getData());
+                    LeitsystemResponse response = LeitsystemRequestHandler.handleRequest(request);
+                    System.out.println(DataFormatUtils.byteArrToStr(response.getRawContent()));
                 }
             }
         } catch (Exception e) {
