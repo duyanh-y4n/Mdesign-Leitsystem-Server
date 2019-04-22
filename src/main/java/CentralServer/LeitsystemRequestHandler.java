@@ -1,6 +1,8 @@
 package CentralServer;
 
 import CentralServer.CommunicationServer.MessageUnicastSender;
+import CentralServer.DataServer.DataServer;
+import Client.Car;
 import Message.Enum.RequestID;
 import Message.Enum.ResponseID;
 import Message.LeitsystemRequest;
@@ -16,6 +18,7 @@ public class LeitsystemRequestHandler extends Thread {
     private DatagramPacket requestPacket;
     private LeitsystemRequest request;
     private LeitsystemResponse response;
+    private DataServer dataServer;
 
     public LeitsystemRequestHandler(DatagramPacket requestPacket) {
         this.requestPacket = requestPacket;
@@ -57,11 +60,11 @@ public class LeitsystemRequestHandler extends Thread {
                 break;
             } catch (Exception e) {
                 port++;
-                if (e.getClass()!=BindException.class){
+                if (e.getClass() != BindException.class) {
                     e.printStackTrace();
                     break;
                 }
-                System.out.println("port busy, change to port " + port) ;
+                System.out.println("port busy, change to port " + port);
             }
         }
     }
@@ -69,11 +72,28 @@ public class LeitsystemRequestHandler extends Thread {
     public void handleRegisterReq() {
         Random random = new Random();
         byte[] header = this.request.getHeader();
+        byte[] body;
         header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
-        byte id = (byte) random.nextInt(20);
-        byte[] body = new byte[]{id};
+        String name = new String(this.request.getBody()).trim();
+
+        Car newCar = new Car(name);
+        newCar.setIP(this.requestPacket.getAddress());
+        newCar.setPort((short) this.requestPacket.getPort());
+        newCar.setId(this.dataServer.getCarList().size() + 1);
+        if (this.dataServer.getCarList().contains(newCar) == false) {
+            this.dataServer.createCar(newCar);
+            body = new byte[]{(byte) newCar.getId()};
+        } else {
+            body = new byte[]{(byte) (this.dataServer.getCarList().indexOf(newCar) + 1)};
+        }
+
         this.response = new LeitsystemResponse(header, body);
         System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
+        this.dataServer.printCarList();
+    }
+
+    public void setDataServer(DataServer dataServer) {
+        this.dataServer = dataServer;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package CentralServer.CommunicationServer;
 
+import CentralServer.DataServer.DataServer;
 import CentralServer.LeitsystemRequestHandler;
 import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
@@ -14,6 +15,7 @@ import java.net.DatagramPacket;
 
 public class MessageListener extends Thread {
     private UDPUnicast listener;
+    private DataServer dataServer;
 
     public MessageListener() throws IOException {
         this.listener = new UDPUnicast();
@@ -33,6 +35,7 @@ public class MessageListener extends Thread {
                 if (packetIsFromLeitsystemClient(request)) {
                     System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
+                    requestHandler.setDataServer(this.dataServer);
                     requestHandler.start();
                     System.out.println("Handling Request");
                 }
@@ -66,5 +69,9 @@ public class MessageListener extends Thread {
             if (requestIDCode == validRequestID.ordinal()) requestIDIsValid = true;
         }
         return requestIDIsValid && requestTypeIsValid;
+    }
+
+    public void setDataServer(DataServer dataServer) {
+        this.dataServer = dataServer;
     }
 }
