@@ -12,6 +12,11 @@ public class MessageSender extends Thread {
         this.sender = new UDPMulticastSender(8081);
     }
 
+    public MessageSender(int port) throws IOException {
+        this.sender = new UDPMulticastSender(port);
+    }
+
+
     @Override
     public void run() {
         try {

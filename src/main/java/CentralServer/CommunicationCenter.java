@@ -10,13 +10,13 @@ public class CommunicationCenter {
     private InfoServer infoSender;
 
     public CommunicationCenter() throws IOException {
-        this.messageListener = new MessageListener();
-        this.sender = new MessageSender();
-        this.infoSender =new InfoServer();
+        this.messageListener = new MessageListener(ServerConfig.LISTENER_PORT);
+        this.sender = new MessageSender(ServerConfig.MULTICAST_SENDER_PORT);
+        this.infoSender = new InfoServer(ServerConfig.MULTICAST_SENDER_PORT);
         this.infoSender.setMessageListenerPort(this.messageListener.getPort());
     }
 
-    public void startServer(){
+    public void startServer() {
         NetworkUtils.printLocalMachineAddresses();
         this.messageListener.start();
 //        this.sender.start();

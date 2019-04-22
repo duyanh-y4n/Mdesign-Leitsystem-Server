@@ -16,6 +16,10 @@ public class MessageListener extends Thread {
         this.listener = new UDPUnicast();
     }
 
+    public MessageListener(int port) throws IOException {
+        this.listener = new UDPUnicast(port);
+    }
+
     @Override
     public void run() {
         try {

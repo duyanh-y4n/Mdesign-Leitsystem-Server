@@ -15,6 +15,11 @@ public class InfoServer extends Thread {
         this.sender = new UDPMulticastSender(8081);
     }
 
+    public InfoServer(int port) throws IOException {
+        this.sender = new UDPMulticastSender(port);
+    }
+
+    //save the info from Listenport of this whole server to send it later to all client
     public void setMessageListenerPort(int messageListenerPort) {
         this.messageListenerPort = messageListenerPort;
     }
