@@ -11,10 +11,18 @@ public class MessageUnicastSender {
     private UDPUnicast unicastSender;
 
     public MessageUnicastSender() throws SocketException, UnknownHostException {
-        this.unicastSender = new UDPUnicast(ServerConfig.UNICAST_SENDER_PORT);
+        this.unicastSender = new UDPUnicast(8081);
+    }
+
+    public MessageUnicastSender(int port) throws SocketException, UnknownHostException {
+        this.unicastSender = new UDPUnicast(port);
     }
 
     public void send(byte[] message, InetAddress targetIP, int targetPort) throws IOException {
         this.unicastSender.sendPacket(message, targetIP.getHostAddress(), targetPort);
     };
+
+    public void close(){
+        this.unicastSender.close();
+    }
 }

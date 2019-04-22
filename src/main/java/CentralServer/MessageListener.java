@@ -4,6 +4,7 @@ import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;
 import com.y4n.UDP.UDPUnicast;
+import com.y4n.Utils.DataFormatUtils;
 import com.y4n.Utils.MessageUtils.Enum.RequestType;
 import com.y4n.Utils.MessageUtils.Response;
 
@@ -29,10 +30,15 @@ public class MessageListener extends Thread {
                 LeitsystemRequest request = new LeitsystemRequest(packet.getData());
                 request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
                 if (packetIsFromLeitsystemClient(request)) {
-                    System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
+                    System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.start();
                 }
+// this case is only to test
+//                else if(packet.getData().toString().isEmpty()==false){
+//                    System.out.println(DataFormatUtils.byteArrToStr(packet.getData()));
+//                    System.out.println(DataFormatUtils.byteArrToHEXCharList(packet.getData()));
+//                }
             }
         } catch (Exception e) {
             e.printStackTrace();

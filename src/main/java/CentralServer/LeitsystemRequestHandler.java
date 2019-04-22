@@ -8,9 +8,11 @@ import Message.MessageConfig;
 import com.y4n.Utils.DataFormatUtils;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.DatagramPacket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Random;
 
 public class LeitsystemRequestHandler extends Thread {
     private DatagramPacket requestPacket;
@@ -30,14 +32,15 @@ public class LeitsystemRequestHandler extends Thread {
         //TODO: response will be parse here (Logic of the system)
         switch (requestID) {
             case NONE:
-                System.out.println(ResponseID.NONE);
+                System.out.println(ResponseID.NONE + " to " + requestID + ":");
                 break;
             case REGISTER_REQ:
-                System.out.println(ResponseID.REGISTER_ID_RES);
+                System.out.println(ResponseID.REGISTER_ID_RES + " to " + requestID + ":");
                 handleRegisterReq();
+                sendResponse();
                 break;
             case UPDATE_CAR_STATE_REQ:
-                System.out.println(ResponseID.DRIVE_PERMISSTION_RES);
+                System.out.println(ResponseID.DRIVE_PERMISSTION_RES + " to " + requestID + ":");
                 break;
             default:
                 System.out.println("none of Request ID was found!");
@@ -45,17 +48,33 @@ public class LeitsystemRequestHandler extends Thread {
         }
     }
 
-    public void sendResponse() throws IOException {
-        MessageUnicastSender sender = new MessageUnicastSender();
-        sender.send(this.response.getRawContent(),this.requestPacket.getAddress(),this.requestPacket.getPort());
+    public void sendResponse() {
+        int port = ServerConfig.UNICAST_SENDER_PORT;
+        while (true) {
+            try {
+                MessageUnicastSender sender = new MessageUnicastSender(port);
+                sender.send(this.response.getRawContent(), this.requestPacket.getAddress(), this.requestPacket.getPort());
+                System.out.println("sent on port " + port);
+                sender.close();
+                break;
+            } catch (Exception e) {
+                port++;
+                if (e.getClass()!=BindException.class){
+                    e.printStackTrace();
+                    break;
+                }
+                System.out.println("port busy, change to port " + port) ;
+            }
+        }
     }
 
-    public void handleRegisterReq(){
+    public void handleRegisterReq() {
+        Random random = new Random();
         byte[] header = this.request.getHeader();
         header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
-        byte id = 0x01;
+        byte id = (byte) random.nextInt(20);
         byte[] body = new byte[]{id};
-        this.response = new LeitsystemResponse(header,body);
+        this.response = new LeitsystemResponse(header, body);
         System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
     }
 
