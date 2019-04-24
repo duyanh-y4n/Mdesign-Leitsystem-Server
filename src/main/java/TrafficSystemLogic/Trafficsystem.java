@@ -66,7 +66,7 @@ public class Trafficsystem {
             if ((Processed_vehicle.getPosition() & 0x0F) < 4) {
                 Processed_vehicle.determine_priority();
                 Processed_vehicle.determine_Area();
-                if (Processed_vehicle.book_Area() == 1) {
+                if (Processed_vehicle.book_Area()) {
                     Processed_vehicle.setClearance((byte) 0x01);
                     return Processed_vehicle.getClearance();
                 } else {

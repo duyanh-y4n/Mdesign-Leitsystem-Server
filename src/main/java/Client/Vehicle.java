@@ -235,23 +235,23 @@ public class Vehicle extends Client {
     }
 
     public void determine_Area() {
-        Area_to_book.setindex(this.position & 0x0F);
-        Area_to_book.setfields(Area_to_book.getindex(), (byte) 0x01);
+        Area_to_book.setIndex(this.position & 0x0F);
+        Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
         if (this.direction != 0x01) {
-            Area_to_book.raise_index(1);
-            Area_to_book.setfields(Area_to_book.getindex(), (byte) 0x01);
+            Area_to_book.raiseIndex(1);
+            Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
         }
         if (this.direction == 0x10) {
-            Area_to_book.raise_index(1);
-            Area_to_book.setfields(Area_to_book.getindex(), (byte) 0x01);
+            Area_to_book.raiseIndex(1);
+            Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
         }
     }
 
-    public int book_Area() {
+    public boolean book_Area() {
         if ((this.position & 0x0F) < 4) {
             return Crossroad_current.Occupie_Area(this.priority, this.Area_to_book);
         } else {
-            return 0;
+            return false;
         }
     }
 

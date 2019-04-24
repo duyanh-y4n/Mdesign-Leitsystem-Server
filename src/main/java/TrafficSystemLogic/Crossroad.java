@@ -35,37 +35,37 @@ public class Crossroad {
         this.name = name;
     }
 
-    public int Occupie_Area(int priority, Area Area_to_book){
+    public boolean Occupie_Area(int priority, Area Area_to_book){
         Area area_temp = new Area();
-        int succes = 1;
+        boolean success = true;
         for (int i = 0; i<=3; i++){
-            if(Area_to_book.getfields(i)==1){
-                area_temp.setfields(i,(byte)priority);
-            }else if (Area_to_book.getfields(i)==0){
-                area_temp.setfields(i,(byte) 0);
+            if(Area_to_book.getField(i)==1){
+                area_temp.setField(i,(byte)priority);
+            }else if (Area_to_book.getField(i)==0){
+                area_temp.setField(i,(byte) 0);
             }else{
-                System.out.println("Booking error:"+Area_to_book.getfields(i)+"on field "+i);
+                System.out.println("Booking error:"+Area_to_book.getField(i)+"on field "+i);
             }
         }
         for(int i = 0; i<=3; i++){
-            if(area_temp.getfields(i)<=Area_occupied.getfields(i) && area_temp.getfields(i)!=0){
-                succes = 0;
+            if(area_temp.getField(i)<=Area_occupied.getField(i) && area_temp.getField(i)!=0){
+                success = false;
             }
         }
-        if (succes==1){
+        if (success){
             for(int i = 0; i<=3; i++){
-                if(area_temp.getfields(i)>Area_occupied.getfields(i)){
-                    Area_occupied.setfields(i,(byte) area_temp.getfields(i));
+                if(area_temp.getField(i)>Area_occupied.getField(i)){
+                    Area_occupied.setField(i,(byte) area_temp.getField(i));
                 }
             }
         }
-        return succes;
+        return success;
     }
 
     public void Clear_Area(Area Area_to_clear){
         for(int i = 0; i<=3; i++){
-            if(Area_to_clear.getfields(i)==1) {
-                Area_occupied.setfields(i, (byte) 0);
+            if(Area_to_clear.getField(i)==1) {
+                Area_occupied.setField(i, (byte) 0);
             }
         }
     }
