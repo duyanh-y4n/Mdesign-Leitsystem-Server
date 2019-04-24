@@ -4,12 +4,12 @@ public class Area {
     protected int index;
     protected byte [] fields;
 
-    Area(){
+    public Area(){
         this.index = 0;
         this.fields = new byte []{0,0,0,0};
     }
 
-    Area(int position, byte field0, byte field1, byte field2, byte field3){
+    public Area(int position, byte field0, byte field1, byte field2, byte field3){
         this.index = position;
         this.fields = new byte []{field0, field1, field2, field3};
     }
