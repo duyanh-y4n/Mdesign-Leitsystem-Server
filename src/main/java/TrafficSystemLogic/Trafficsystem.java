@@ -61,6 +61,9 @@ public class Trafficsystem {
 
     public byte Process_vehicle_status(byte ID, byte position, byte direction, byte speed) {
         Vehicle Processed_vehicle = accessVehicle(ID);
+        if (Processed_vehicle == null) {
+            return 0;
+        }
         Processed_vehicle.setStatus(position, direction, speed);
         if (Processed_vehicle.determine_crossroad(Crossroad_A, Crossroad_B, Crossroad_C) == 1) {
             if ((Processed_vehicle.getPosition() & 0x0F) < 4) {

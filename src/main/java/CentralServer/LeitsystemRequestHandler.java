@@ -39,12 +39,12 @@ public class LeitsystemRequestHandler extends Thread {
                 break;
             case REGISTER_REQ:
                 System.out.println(ResponseID.REGISTER_ID_RES + " to " + requestID + ":");
+                logRequest();
                 handleRegisterReq();
-                sendResponse();
                 break;
             case UPDATE_CAR_STATE_REQ:
                 System.out.println(ResponseID.DRIVE_PERMISSTION_RES + " to " + requestID + ":");
-                System.out.println("Request content " + DataFormatUtils.byteArrToHEXCharList(this.request.getBody()));
+                logRequest();
                 handleCarStateReq();
                 break;
             default:
@@ -92,7 +92,8 @@ public class LeitsystemRequestHandler extends Thread {
         }
 
         this.response = new LeitsystemResponse(header, body);
-        System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
+        sendResponse();
+        logResponse();
         this.vehicleDatabaseDAO.printAll();
     }
 
@@ -109,11 +110,25 @@ public class LeitsystemRequestHandler extends Thread {
         byte carSpeed = this.request.getBody()[MessageConfig.VERHICLE_SPEED_POSITION_IN_BODY];
 
         byte[] header = this.request.getHeader();
-        header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
-        byte clearance = trafficsystem.Process_vehicle_status(carId, carPostion, carDirection, carSpeed);
-        byte[] body = new byte[]{clearance};
-        this.response = new LeitsystemResponse(header, body);
-        System.out.println("Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
+        if (this.vehicleDatabaseDAO.get(carId) == null) {
+            System.out.println("Sending Reject Response");
+            header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_REJECT;
+            this.response = new LeitsystemResponse(header);
+            logResponse();
+        } else if (carId == 0) {
+            System.out.println("Error: ID 0 is reserved for server");
+        } else {
+            Vehicle vehicle = this.vehicleDatabaseDAO.get(carId);
+            System.out.println("Found Vehicle: " + vehicle.getId() + "." +
+                    vehicle.getName() + " - IP: " + vehicle.getIP());
+
+            header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
+            byte clearance = trafficsystem.Process_vehicle_status(carId, carPostion, carDirection, carSpeed);
+            byte[] body = new byte[]{clearance};
+            this.response = new LeitsystemResponse(header, body);
+            logResponse();
+            sendResponse();
+        }
     }
 
     public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
@@ -123,5 +138,16 @@ public class LeitsystemRequestHandler extends Thread {
     @Override
     public void run() {
         handleRequest();
+    }
+
+    public void logRequest() {
+        System.out.println("Request: " + DataFormatUtils.byteArrToHEXCharList(this.request.getHeader())
+                + DataFormatUtils.byteArrToHEXCharList(this.request.getBody()));
+    }
+
+    public void logResponse() {
+        System.out.println("Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getHeader())
+                + DataFormatUtils.byteArrToHEXCharList(this.response.getBody()));
+
     }
 }
