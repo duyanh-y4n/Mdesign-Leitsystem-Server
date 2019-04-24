@@ -8,6 +8,7 @@ import Message.Enum.ResponseID;
 import Message.LeitsystemRequest;
 import Message.LeitsystemResponse;
 import Message.MessageConfig;
+import TrafficSystemLogic.CrossroadList;
 import TrafficSystemLogic.Trafficsystem;
 import com.y4n.Utils.DataFormatUtils;
 
@@ -96,8 +97,12 @@ public class LeitsystemRequestHandler extends Thread {
     }
 
     private void handleCarStateReq() {
-        Trafficsystem trafficsystem = new Trafficsystem();
-        trafficsystem.setVehicle_list(this.vehicleDatabaseDAO);
+        Trafficsystem trafficsystem = new Trafficsystem(
+                CrossroadList.Crossroad_A,
+                CrossroadList.Crossroad_B,
+                CrossroadList.Crossroad_C
+        );
+        trafficsystem.setVehicleList(this.vehicleDatabaseDAO);
         byte carId = this.request.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER];
         byte carPostion = this.request.getBody()[MessageConfig.VERHICLE_LOCATION_POSITION_IN_BODY];
         byte carDirection = this.request.getBody()[MessageConfig.VERHICLE_DIRECTION_POSITION_IN_BODY];
@@ -105,9 +110,9 @@ public class LeitsystemRequestHandler extends Thread {
 
         byte[] header = this.request.getHeader();
         header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
-        byte clearance = trafficsystem.Process_vehicle_status(carId,carPostion,carDirection,carSpeed);
+        byte clearance = trafficsystem.Process_vehicle_status(carId, carPostion, carDirection, carSpeed);
         byte[] body = new byte[]{clearance};
-        this.response = new LeitsystemResponse(header,body);
+        this.response = new LeitsystemResponse(header, body);
         System.out.println("Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
     }
 

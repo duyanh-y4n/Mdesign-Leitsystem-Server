@@ -1,6 +1,5 @@
 package TrafficSystemLogic;
 
-import CentralServer.DataServer.LeitsystemSimpleVerhicleDatabaseDAO;
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 
@@ -8,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trafficsystem {
-    protected Crossroad Crossroad_A = new Crossroad("Crossroad A", (byte) 0xA0, (byte) 0xA1, (byte) 0xA2, (byte) 0xA3);
-    protected Crossroad Crossroad_B = new Crossroad("Crossroad B", (byte) 0xB0, (byte) 0xB1, (byte) 0xB2, (byte) 0xB3);
-    protected Crossroad Crossroad_C = new Crossroad("Crossroad C", (byte) 0xC0, (byte) 0xC1, (byte) 0xC2, (byte) 0xC3);
+    protected Crossroad Crossroad_A;
+    protected Crossroad Crossroad_B;
+    protected Crossroad Crossroad_C;
 
     //    protected List Vehicle_list = new ArrayList();
     protected VehicleDatabaseDAO Vehicle_list;
@@ -18,17 +17,20 @@ public class Trafficsystem {
     protected List Vehicle_list_Crossroad_B_idle = new ArrayList();
     protected List Vehicle_list_Crossroad_C_idle = new ArrayList();
 
-    public void setVehicle_list(VehicleDatabaseDAO vehicle_list) {
+    public Trafficsystem(){
+    }
+
+    public Trafficsystem(Crossroad crossroad_A, Crossroad crossroad_B, Crossroad crossroad_C) {
+        Crossroad_A = crossroad_A;
+        Crossroad_B = crossroad_B;
+        Crossroad_C = crossroad_C;
+    }
+
+    public void setVehicleList(VehicleDatabaseDAO vehicle_list) {
         Vehicle_list = vehicle_list;
     }
 
-    public void add_Vehicle(byte id) {
-        Vehicle temp = new Vehicle(id);
-        Vehicle_list.save(temp);
-
-    }
-
-    public Vehicle acces_Vehicle(int id) {
+    public Vehicle accessVehicle(int id) {
         return Vehicle_list.get(id);
     }
 
@@ -48,17 +50,17 @@ public class Trafficsystem {
             return (Vehicle) Vehicle_list_Crossroad_A_idle.get(i);
         else if (Crossroad.name.equals("Crossroad B"))
             return (Vehicle) Vehicle_list_Crossroad_B_idle.get(i);
-        else if (Crossroad.name.equals("Crossroad A"))
+        else if (Crossroad.name.equals("Crossroad C"))
             return (Vehicle) Vehicle_list_Crossroad_C_idle.get(i);
         else
             System.out.println("Idle vehicles can not be accessed because the Crossroad is not listed");
-        Vehicle Errorvehicle = new Vehicle((byte) 0xFF);
-        return Errorvehicle;
+        Vehicle ErrorVehicle = new Vehicle((byte) 0xFF);
+        return ErrorVehicle;
 
     }
 
     public byte Process_vehicle_status(byte ID, byte position, byte direction, byte speed) {
-        Vehicle Processed_vehicle = acces_Vehicle(ID);
+        Vehicle Processed_vehicle = accessVehicle(ID);
         Processed_vehicle.setStatus(position, direction, speed);
         if (Processed_vehicle.determine_crossroad(Crossroad_A, Crossroad_B, Crossroad_C) == 1) {
             if ((Processed_vehicle.getPosition() & 0x0F) < 4) {
@@ -82,7 +84,7 @@ public class Trafficsystem {
                 return Processed_vehicle.getClearance();
             }
         } else {
-            System.out.println("Unknown Crossroad, vehiclestatus was not processed");
+            System.out.println("Unknown Crossroad, vehicle status was not processed");
             Processed_vehicle.setClearance((byte) 0x00);
             return Processed_vehicle.getClearance();
         }

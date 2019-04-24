@@ -119,8 +119,6 @@ public class Vehicle extends Client {
                 default:
                     System.out.println("Unregistered position, Crossroad can't be determined");
                     return 0;
-
-
             }
         } else {
             switch (this.position & 0xF0) {
