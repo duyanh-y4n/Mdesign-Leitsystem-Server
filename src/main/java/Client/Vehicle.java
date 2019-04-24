@@ -1,9 +1,9 @@
 package Client;
 
-public class Car extends Client{
+public class Vehicle extends Client{
     private String name;
 
-    public Car(String name) {
+    public Vehicle(String name) {
         this.name = name;
     }
 
@@ -18,7 +18,9 @@ public class Car extends Client{
     @Override
     public boolean equals(Object obj) {
         if (obj==null) return false;
-        Car compared = (Car) obj;
+        Vehicle compared = (Vehicle) obj;
         return this.name.equals(compared.name)&&this.getIP().equals(compared.getIP());
     }
+
+
 }

@@ -1,6 +1,6 @@
 package CentralServer.CommunicationServer;
 
-import CentralServer.DataServer.DataServer;
+import CentralServer.DataServer.VehicleDatabaseDAO;
 import CentralServer.ServerConfig;
 import com.y4n.Utils.NetworkUtils;
 
@@ -10,7 +10,7 @@ public class CommunicationCenter {
     private MessageListener messageListener;
     private MessageMulticastSender sender;
     private InfoServer infoSender;
-    private DataServer dataServer;
+    private VehicleDatabaseDAO vehicleDatabaseDAO;
 
     public CommunicationCenter() throws IOException {
         this.messageListener = new MessageListener(ServerConfig.LISTENER_PORT);
@@ -19,9 +19,9 @@ public class CommunicationCenter {
         this.infoSender.setMessageListenerPort(this.messageListener.getPort());
     }
 
-    public void setDataServer(DataServer dataServer) {
-        this.dataServer = dataServer;
-        this.messageListener.setDataServer(this.dataServer);
+    public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
+        this.vehicleDatabaseDAO = vehicleDatabaseDAO;
+        this.messageListener.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
     }
 
     public void startServer() {

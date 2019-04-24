@@ -1,8 +1,8 @@
 package CentralServer;
 
 import CentralServer.CommunicationServer.MessageUnicastSender;
-import CentralServer.DataServer.DataServer;
-import Client.Car;
+import CentralServer.DataServer.VehicleDatabaseDAO;
+import Client.Vehicle;
 import Message.Enum.RequestID;
 import Message.Enum.ResponseID;
 import Message.LeitsystemRequest;
@@ -18,7 +18,7 @@ public class LeitsystemRequestHandler extends Thread {
     private DatagramPacket requestPacket;
     private LeitsystemRequest request;
     private LeitsystemResponse response;
-    private DataServer dataServer;
+    private VehicleDatabaseDAO vehicleDatabaseDAO;
 
     public LeitsystemRequestHandler(DatagramPacket requestPacket) {
         this.requestPacket = requestPacket;
@@ -76,24 +76,24 @@ public class LeitsystemRequestHandler extends Thread {
         header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
         String name = new String(this.request.getBody()).trim();
 
-        Car newCar = new Car(name);
-        newCar.setIP(this.requestPacket.getAddress());
-        newCar.setPort((short) this.requestPacket.getPort());
-        newCar.setId(this.dataServer.getCarList().size() + 1);
-        if (this.dataServer.getCarList().contains(newCar) == false) {
-            this.dataServer.createCar(newCar);
-            body = new byte[]{(byte) newCar.getId()};
+        Vehicle newVehicle = new Vehicle(name);
+        newVehicle.setIP(this.requestPacket.getAddress());
+        newVehicle.setPort((short) this.requestPacket.getPort());
+        newVehicle.setId(this.vehicleDatabaseDAO.getAll().size());
+        if (this.vehicleDatabaseDAO.getAll().contains(newVehicle) == false) {
+            this.vehicleDatabaseDAO.save(newVehicle);
+            body = new byte[]{(byte) newVehicle.getId()};
         } else {
-            body = new byte[]{(byte) (this.dataServer.getCarList().indexOf(newCar) + 1)};
+            body = new byte[]{(byte) (this.vehicleDatabaseDAO.getAll().indexOf(newVehicle) + 1)};
         }
 
         this.response = new LeitsystemResponse(header, body);
         System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
-        this.dataServer.printCarList();
+        this.vehicleDatabaseDAO.printAll();
     }
 
-    public void setDataServer(DataServer dataServer) {
-        this.dataServer = dataServer;
+    public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
+        this.vehicleDatabaseDAO = vehicleDatabaseDAO;
     }
 
     @Override

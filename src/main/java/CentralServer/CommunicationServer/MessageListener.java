@@ -1,21 +1,19 @@
 package CentralServer.CommunicationServer;
 
-import CentralServer.DataServer.DataServer;
+import CentralServer.DataServer.VehicleDatabaseDAO;
 import CentralServer.LeitsystemRequestHandler;
 import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;
 import com.y4n.UDP.UDPUnicast;
-import com.y4n.Utils.DataFormatUtils;
 import com.y4n.Utils.MessageUtils.Enum.RequestType;
-import com.y4n.Utils.MessageUtils.Response;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 
 public class MessageListener extends Thread {
     private UDPUnicast listener;
-    private DataServer dataServer;
+    private VehicleDatabaseDAO vehicleDatabaseDAO;
 
     public MessageListener() throws IOException {
         this.listener = new UDPUnicast();
@@ -35,7 +33,7 @@ public class MessageListener extends Thread {
                 if (packetIsFromLeitsystemClient(request)) {
                     System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
-                    requestHandler.setDataServer(this.dataServer);
+                    requestHandler.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
                     requestHandler.start();
                     System.out.println("Handling Request");
                 }
@@ -71,7 +69,7 @@ public class MessageListener extends Thread {
         return requestIDIsValid && requestTypeIsValid;
     }
 
-    public void setDataServer(DataServer dataServer) {
-        this.dataServer = dataServer;
+    public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
+        this.vehicleDatabaseDAO = vehicleDatabaseDAO;
     }
 }

@@ -1,18 +1,18 @@
 package CentralServer;
 
 import CentralServer.CommunicationServer.CommunicationCenter;
-import CentralServer.DataServer.DataServer;
+import CentralServer.DataServer.VehicleDatabaseDAO;
 
 public class CentralServer {
-    private DataServer dataServer;
+    private VehicleDatabaseDAO vehicleDatabaseDAO;
     private CommunicationCenter communicationCenter;
 
     public CentralServer() {
     }
 
-    public void setDataServer(DataServer dataServer) {
-        this.dataServer = dataServer;
-        this.communicationCenter.setDataServer(this.dataServer);
+    public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
+        this.vehicleDatabaseDAO = vehicleDatabaseDAO;
+        this.communicationCenter.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
     }
 
     public void setCommunicationCenter(CommunicationCenter communicationCenter) {
