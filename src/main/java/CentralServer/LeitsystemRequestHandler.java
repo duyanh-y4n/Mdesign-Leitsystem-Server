@@ -8,6 +8,7 @@ import Message.Enum.ResponseID;
 import Message.LeitsystemRequest;
 import Message.LeitsystemResponse;
 import Message.MessageConfig;
+import TrafficSystemLogic.Trafficsystem;
 import com.y4n.Utils.DataFormatUtils;
 
 import java.net.BindException;
@@ -42,6 +43,8 @@ public class LeitsystemRequestHandler extends Thread {
                 break;
             case UPDATE_CAR_STATE_REQ:
                 System.out.println(ResponseID.DRIVE_PERMISSTION_RES + " to " + requestID + ":");
+                System.out.println("Request content " + DataFormatUtils.byteArrToHEXCharList(this.request.getBody()));
+                handleCarStateReq();
                 break;
             default:
                 System.out.println("none of Request ID was found!");
@@ -90,6 +93,22 @@ public class LeitsystemRequestHandler extends Thread {
         this.response = new LeitsystemResponse(header, body);
         System.out.println(DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
         this.vehicleDatabaseDAO.printAll();
+    }
+
+    private void handleCarStateReq() {
+        Trafficsystem trafficsystem = new Trafficsystem();
+        trafficsystem.setVehicle_list(this.vehicleDatabaseDAO);
+        byte carId = this.request.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER];
+        byte carPostion = this.request.getBody()[MessageConfig.VERHICLE_LOCATION_POSITION_IN_BODY];
+        byte carDirection = this.request.getBody()[MessageConfig.VERHICLE_DIRECTION_POSITION_IN_BODY];
+        byte carSpeed = this.request.getBody()[MessageConfig.VERHICLE_SPEED_POSITION_IN_BODY];
+
+        byte[] header = this.request.getHeader();
+        header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
+        byte clearance = trafficsystem.Process_vehicle_status(carId,carPostion,carDirection,carSpeed);
+        byte[] body = new byte[]{clearance};
+        this.response = new LeitsystemResponse(header,body);
+        System.out.println("Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getRawContent()));
     }
 
     public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {

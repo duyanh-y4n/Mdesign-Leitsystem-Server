@@ -24,6 +24,10 @@ public class Vehicle extends Client {
         Area_booked = new Area();
     }
 
+    public Vehicle(byte id) {
+        this.setId(id);
+    }
+
     public String getName() {
         return this.name;
     }
