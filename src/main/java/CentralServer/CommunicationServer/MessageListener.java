@@ -31,11 +31,10 @@ public class MessageListener extends Thread {
                 LeitsystemRequest request = new LeitsystemRequest(packet.getData());
                 request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
                 if (packetIsFromLeitsystemClient(request)) {
-                    System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
                     requestHandler.start();
-                    System.out.println("Handling Request");
+                    logReceivedPacket(packet);
                 }
 // this case is only to test
 //                else if(packet.getData().toString().isEmpty()==false){
@@ -71,5 +70,11 @@ public class MessageListener extends Thread {
 
     public void setVehicleDatabaseDAO(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
+    }
+
+    //log function
+    private void logReceivedPacket(DatagramPacket packet){
+        System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
+        System.out.println("Handling Request");
     }
 }

@@ -22,6 +22,7 @@ public class LeitsystemSimpleVerhicleDatabaseDAO extends VehicleDatabaseDAO {
 
     @Override
     public void printAll() {
+        System.out.println("Client List:");
         for (Vehicle vehicle :
                 this.vehicleList) {
             System.out.println(vehicle.getId() + "." + vehicle.getName() + " - IP: " + vehicle.getIP());
