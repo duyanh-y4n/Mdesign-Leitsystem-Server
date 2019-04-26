@@ -29,7 +29,9 @@ public class InfoServer extends Thread {
         try {
             while (true) {
 //                System.out.println("sending Server IP and Port");
-                sender.sendPacket(this.getIPAndPortAsPacketInBytes());
+//                System.out.println(NetworkUtils.getLocalHostAddress());
+                byte[] ServerInfo = this.getIPAndPortAsPacketInBytes();
+                sender.sendPacket(ServerInfo);
                 TimeUnit.SECONDS.sleep(5);
             }
         } catch (Exception e) {

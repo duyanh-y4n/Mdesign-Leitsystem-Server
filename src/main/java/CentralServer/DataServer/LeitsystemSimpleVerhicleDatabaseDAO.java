@@ -25,7 +25,9 @@ public class LeitsystemSimpleVerhicleDatabaseDAO extends VehicleDatabaseDAO {
         System.out.println("Client List:");
         for (Vehicle vehicle :
                 this.vehicleList) {
-            System.out.println(vehicle.getId() + "." + vehicle.getName() + " - IP: " + vehicle.getIP());
+            System.out.println(vehicle.getId() + "." + vehicle.getName() + " - IP: " + vehicle.getIP() + ":"
+                    + vehicle.getPort()
+            );
         }
     }
 }
