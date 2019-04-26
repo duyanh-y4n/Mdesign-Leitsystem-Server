@@ -1,7 +1,7 @@
 package Message;
 
 public class MessageConfig {
-    public static int MESSAGE_LENGTH = 20;
+    public static int MESSAGE_LENGTH = 8;
     public static int MESSAGE_HEADER_LENGTH = 4;
     public static int MESSAGE_BODY_LENGTH = MESSAGE_LENGTH - MESSAGE_HEADER_LENGTH;
 

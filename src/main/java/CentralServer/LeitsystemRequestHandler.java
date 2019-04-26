@@ -27,7 +27,7 @@ public class LeitsystemRequestHandler extends Thread {
         this.request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
     }
 
-    public void handleRequest() {
+    public void handleRequest() throws InterruptedException {
         byte requestIDCode = this.request.getHeader()[MessageConfig.MESSAGE_ID_POSITION_IN_HEADER];
         RequestID requestID = RequestID.values()[requestIDCode];
 
@@ -62,7 +62,8 @@ public class LeitsystemRequestHandler extends Thread {
                 Vehicle vehicle = this.vehicleDatabaseDAO.get(
                         this.response.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER]
                 );
-                System.out.println("    Response sent on port " + port + " to " + vehicle.getName());
+                System.out.println("    Response sent on port " + port + " to " + vehicle.getName()
+                        + " at " + vehicle.getIP());
                 sender.close();
                 break;
             } catch (Exception e) {
@@ -117,10 +118,14 @@ public class LeitsystemRequestHandler extends Thread {
 
         byte[] header = this.request.getHeader();
         if (this.vehicleDatabaseDAO.get(carId) == null) {
-            System.out.println("Sending Reject Response");
-            header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_REJECT;
-            this.response = new LeitsystemResponse(header);
-            logResponse();
+            //TODO: handle case unregisted car sending message
+//            System.out.println("Sending Reject Response");
+//            header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_REJECT;
+//            this.response = new LeitsystemResponse(header);
+//            logResponse();
+
+            System.out.println("Reject Request");
+            sendResponseLater = false;
         } else if (carId == 0) {
             System.out.println("Error: ID 0 is reserved for server");
             sendResponseLater = false;
@@ -144,7 +149,11 @@ public class LeitsystemRequestHandler extends Thread {
 
     @Override
     public void run() {
-        handleRequest();
+        try {
+            handleRequest();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     // Log function

@@ -10,6 +10,8 @@ import com.y4n.Utils.MessageUtils.Enum.RequestType;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MessageListener extends Thread {
     private UDPUnicast listener;
@@ -31,10 +33,11 @@ public class MessageListener extends Thread {
                 LeitsystemRequest request = new LeitsystemRequest(packet.getData());
                 request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
                 if (packetIsFromLeitsystemClient(request)) {
+                    showTime();
+                    logReceivedPacket(packet);
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
                     requestHandler.start();
-                    logReceivedPacket(packet);
                 }
 // this case is only to test
 //                else if(packet.getData().toString().isEmpty()==false){
@@ -74,7 +77,11 @@ public class MessageListener extends Thread {
 
     //log function
     private void logReceivedPacket(DatagramPacket packet){
-        System.out.println("\nRequest from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
+        System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
         System.out.println("Handling Request");
+    }
+
+    public void showTime(){
+        System.out.println("\n\n---------" + Calendar.getInstance().getTime() + "--------");
     }
 }
