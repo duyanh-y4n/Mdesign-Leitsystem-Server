@@ -21,9 +21,9 @@ public class Trafficsystem {
     }
 
     public Trafficsystem(Crossroad crossroad_A, Crossroad crossroad_B, Crossroad crossroad_C) {
-        Crossroad_A = crossroad_A;
-        Crossroad_B = crossroad_B;
-        Crossroad_C = crossroad_C;
+        this.Crossroad_A = crossroad_A;
+        this.Crossroad_B = crossroad_B;
+        this.Crossroad_C = crossroad_C;
     }
 
     public void setVehicleList(VehicleDatabaseDAO vehicle_list) {

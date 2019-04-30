@@ -5,9 +5,9 @@ import Client.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeitsystemSimpleVerhicleDatabaseDAO extends VehicleDatabaseDAO {
+public class LeitsystemSimpleVehicleDatabaseDAO extends VehicleDatabaseDAO {
 
-    public LeitsystemSimpleVerhicleDatabaseDAO() {
+    public LeitsystemSimpleVehicleDatabaseDAO() {
         this.vehicleList = new ArrayList<Vehicle>();
     }
 
