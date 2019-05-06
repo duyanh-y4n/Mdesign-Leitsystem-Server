@@ -10,19 +10,6 @@ public class TableGraphicUI implements Runnable, UserInterface{
     private VehicleTableModel vehicleTableModel;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
 
-    Object[][] data = {
-            {"Kathy", "Smith",
-                    "Snowboarding", new Integer(5), new Boolean(false)},
-            {"John", "Doe",
-                    "Rowing", new Integer(3), new Boolean(true)},
-            {"Sue", "Black",
-                    "Knitting", new Integer(2), new Boolean(false)},
-            {"Jane", "White",
-                    "Speed reading", new Integer(20), new Boolean(true)},
-            {"Joe", "Brown",
-                    "Pool", new Integer(10), new Boolean(false)}
-    };
-
     public TableGraphicUI(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
         this.vehicleTableModel = new VehicleTableModel(this.vehicleDatabaseDAO);
@@ -38,7 +25,11 @@ public class TableGraphicUI implements Runnable, UserInterface{
         JTable table = new JTable();
         table.setModel(this.vehicleTableModel);
 
-        container.add(table, BorderLayout.CENTER);
+        container.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JButton updateBtn = new JButton("update");
+        updateBtn.addActionListener(new TableUpdateAction(this.vehicleTableModel));
+        container.add(updateBtn, BorderLayout.SOUTH);
     }
 
     public JFrame getFrame() {
@@ -48,7 +39,7 @@ public class TableGraphicUI implements Runnable, UserInterface{
     @Override
     public void run() {
         this.frame = new JFrame("Title");
-        this.frame.setPreferredSize(new Dimension(200, 100));
+        this.frame.setPreferredSize(new Dimension(800, 300));
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

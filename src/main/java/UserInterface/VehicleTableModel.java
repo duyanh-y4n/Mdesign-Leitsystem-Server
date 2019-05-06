@@ -34,6 +34,7 @@ public class VehicleTableModel extends AbstractTableModel {
                 this.vehicles.set(index, vehicle);
             }
         }
+        this.fireTableDataChanged();
     }
 
     @Override
@@ -68,6 +69,6 @@ public class VehicleTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int col) {
-        return columnNames[col];
+        return this.columnNames[col];
     }
 }
