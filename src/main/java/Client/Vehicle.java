@@ -2,6 +2,10 @@ package Client;
 
 import TrafficSystemLogic.Area;
 import TrafficSystemLogic.Crossroad;
+import com.y4n.Utils.DataFormatUtils;
+import Message.MessageConfig;
+
+import java.util.List;
 
 public class Vehicle extends Client {
     private String name;
@@ -257,5 +261,34 @@ public class Vehicle extends Client {
 
     public void clear_Area() {
         Crossroad_current.Clear_Area(this.Area_to_book);
+    }
+
+    @Override
+    public String toString() {
+        List<String> literalStatus = this.getLiteralStatus();
+        return "Vehicle: " + this.name + "(" + this.getId() + ")" +
+                "\n\tStatus:" +
+                "\n\t\tPosition: " + literalStatus.get(MessageConfig.VEHICLE_LOCATION_POSITION_IN_BODY) +
+                "\n\t\tDirection: " + literalStatus.get(MessageConfig.VEHICLE_DIRECTION_POSITION_IN_BODY) +
+                "\n\t\tSpeed: " + literalStatus.get(MessageConfig.VEHICLE_SPEED_POSITION_IN_BODY) +
+                "\n\t\tDrive Permission: " + this.clearance;
+    }
+
+    public List<String> getLiteralStatus() {
+        byte[] status = new byte[]{this.position};
+        List<String> literalStatus = DataFormatUtils.byteArrToHEXCharList(status);
+
+        if (this.direction == 0x01) {
+            literalStatus.add("Right");
+        } else if (this.direction == 0x10) {
+            literalStatus.add("Left");
+        } else if (this.direction == 0x00) {
+            literalStatus.add("Straight");
+        } else {
+            literalStatus.add("Unknown Direction");
+        }
+
+        literalStatus.add(Integer.toString(this.speed));
+        return literalStatus;
     }
 }

@@ -35,6 +35,7 @@ public class LeitsystemRequestHandler extends Thread {
         switch (requestID) {
             case NONE:
                 System.out.println("    " + ResponseID.NONE + " to " + requestID + ":");
+                logRequest();
                 break;
             case REGISTER_REQ:
                 System.out.println("    " + ResponseID.REGISTER_ID_RES + " to " + requestID + ":");
@@ -112,9 +113,9 @@ public class LeitsystemRequestHandler extends Thread {
         trafficsystem.setVehicleList(this.vehicleDatabaseDAO);
 
         byte carId = this.request.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER];
-        byte carPostion = this.request.getBody()[MessageConfig.VERHICLE_LOCATION_POSITION_IN_BODY];
-        byte carDirection = this.request.getBody()[MessageConfig.VERHICLE_DIRECTION_POSITION_IN_BODY];
-        byte carSpeed = this.request.getBody()[MessageConfig.VERHICLE_SPEED_POSITION_IN_BODY];
+        byte carPostion = this.request.getBody()[MessageConfig.VEHICLE_LOCATION_POSITION_IN_BODY];
+        byte carDirection = this.request.getBody()[MessageConfig.VEHICLE_DIRECTION_POSITION_IN_BODY];
+        byte carSpeed = this.request.getBody()[MessageConfig.VEHICLE_SPEED_POSITION_IN_BODY];
 
         byte[] header = this.request.getHeader();
         if (this.vehicleDatabaseDAO.get(carId) == null) {
@@ -139,6 +140,7 @@ public class LeitsystemRequestHandler extends Thread {
             byte[] body = new byte[]{clearance};
             this.response = new LeitsystemResponse(header, body);
             logResponse();
+            logCarState(vehicle);
         }
         return sendResponseLater;
     }
@@ -165,6 +167,10 @@ public class LeitsystemRequestHandler extends Thread {
     private void logResponse() {
         System.out.println("    Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getHeader())
                 + DataFormatUtils.byteArrToHEXCharList(this.response.getBody()));
+    }
 
+    private void logCarState(Vehicle vehicle){
+        System.out.println("Newly updated vehicle");
+        System.out.println(vehicle);
     }
 }
