@@ -11,7 +11,6 @@ import com.y4n.Utils.MessageUtils.Enum.RequestType;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.util.Calendar;
-import java.util.Date;
 
 public class MessageListener extends Thread {
     private UDPUnicast listener;
@@ -33,7 +32,7 @@ public class MessageListener extends Thread {
                 LeitsystemRequest request = new LeitsystemRequest(packet.getData());
                 request.setHeaderLength(MessageConfig.MESSAGE_HEADER_LENGTH);
                 if (packetIsFromLeitsystemClient(request)) {
-                    showTime();
+                    logTime();
                     logReceivedPacket(packet);
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
@@ -81,7 +80,7 @@ public class MessageListener extends Thread {
         System.out.println("Handling Request");
     }
 
-    public void showTime(){
+    public void logTime(){
         System.out.println("\n\n---------" + Calendar.getInstance().getTime() + "--------");
     }
 }

@@ -3,7 +3,9 @@ import CentralServer.CommunicationServer.CommunicationCenter;
 import CentralServer.DataServer.LeitsystemSimpleVehicleDatabaseDAO;
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
+import UserInterface.TableGraphicUI;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
@@ -16,5 +18,8 @@ public class Main {
         server.setCommunicationCenter(communicationCenter);
         server.setVehicleDatabaseDAO(vehicleDatabaseDAO);
         server.startServer();
+
+        TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
+        SwingUtilities.invokeLater(UI);
     }
 }

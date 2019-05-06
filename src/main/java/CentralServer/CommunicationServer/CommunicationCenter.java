@@ -25,10 +25,15 @@ public class CommunicationCenter {
     }
 
     public void startServer() {
-        System.out.println("Server info:");
-        NetworkUtils.printLocalMachineAddresses();
+        this.logServerInfo();
         this.messageListener.start();
 //        this.sender.start();
         this.infoSender.start();
+    }
+
+    private void logServerInfo(){
+        System.out.println("Server info:");
+        NetworkUtils.printLocalMachineAddresses();
+        System.out.println("Server Ready");
     }
 }
