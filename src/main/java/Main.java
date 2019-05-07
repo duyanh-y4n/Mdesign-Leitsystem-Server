@@ -20,6 +20,7 @@ public class Main {
         server.startServer();
 
         TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
+        communicationCenter.setUI(UI);
         SwingUtilities.invokeLater(UI);
     }
 }

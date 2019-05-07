@@ -26,7 +26,7 @@ public class VehicleTableModel extends AbstractTableModel {
     protected void updateTableModel() {
         for (Vehicle vehicleDAO :
                 this.vehicleDatabaseDAO.getAll()) {
-//            if (vehicleDAO.getId() == 0) continue;
+            if (vehicleDAO.getId() == 0) continue;
             VehicleDTO vehicle = new VehicleDTO(vehicleDAO);
             if (this.vehicles.contains(vehicle) == false) this.vehicles.add(vehicle);
             else {

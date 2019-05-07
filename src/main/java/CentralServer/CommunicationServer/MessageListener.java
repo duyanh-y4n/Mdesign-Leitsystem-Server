@@ -5,6 +5,7 @@ import CentralServer.LeitsystemRequestHandler;
 import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;
+import UserInterface.UserInterface;
 import com.y4n.UDP.UDPUnicast;
 import com.y4n.Utils.MessageUtils.Enum.RequestType;
 
@@ -15,6 +16,11 @@ import java.util.Calendar;
 public class MessageListener extends Thread {
     private UDPUnicast listener;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
+    private UserInterface UI;
+
+    public void setUI(UserInterface UI) {
+        this.UI = UI;
+    }
 
     public MessageListener() throws IOException {
         this.listener = new UDPUnicast();
@@ -36,6 +42,7 @@ public class MessageListener extends Thread {
                     logReceivedPacket(packet);
                     LeitsystemRequestHandler requestHandler = new LeitsystemRequestHandler(packet);
                     requestHandler.setVehicleDatabaseDAO(this.vehicleDatabaseDAO);
+                    requestHandler.setUI(this.UI);
                     requestHandler.start();
                 }
 // this case is only to test

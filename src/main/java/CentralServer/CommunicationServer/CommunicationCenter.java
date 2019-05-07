@@ -2,6 +2,7 @@ package CentralServer.CommunicationServer;
 
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import CentralServer.ServerConfig;
+import UserInterface.UserInterface;
 import com.y4n.Utils.NetworkUtils;
 
 import java.io.IOException;
@@ -11,6 +12,12 @@ public class CommunicationCenter {
 //    private MessageMulticastSender sender;
     private InfoServer infoSender;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
+    private UserInterface UI;
+
+    public void setUI(UserInterface UI) {
+        this.UI = UI;
+        this.messageListener.setUI(this.UI);
+    }
 
     public CommunicationCenter() throws IOException {
         this.messageListener = new MessageListener(ServerConfig.LISTENER_PORT);

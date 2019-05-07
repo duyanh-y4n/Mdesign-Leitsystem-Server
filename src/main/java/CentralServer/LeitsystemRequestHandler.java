@@ -10,6 +10,7 @@ import Message.LeitsystemResponse;
 import Message.MessageConfig;
 import TrafficSystemLogic.CrossroadList;
 import TrafficSystemLogic.Trafficsystem;
+import UserInterface.UserInterface;
 import com.y4n.Utils.DataFormatUtils;
 
 import java.net.BindException;
@@ -20,6 +21,11 @@ public class LeitsystemRequestHandler extends Thread {
     private LeitsystemRequest request;
     private LeitsystemResponse response;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
+    private UserInterface UI;
+
+    public void setUI(UserInterface UI) {
+        this.UI = UI;
+    }
 
     public LeitsystemRequestHandler(DatagramPacket requestPacket) {
         this.requestPacket = requestPacket;
@@ -52,6 +58,7 @@ public class LeitsystemRequestHandler extends Thread {
                 System.out.println("none of Request ID was found!");
                 break;
         }
+        this.UI.updateData();
     }
 
     private void sendResponse() {
