@@ -4,23 +4,27 @@ import CentralServer.DataServer.LeitsystemSimpleVehicleDatabaseDAO;
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 import UserInterface.TableGraphicUI;
+import Utils.AlertUtils;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        CentralServer server = new CentralServer();
-        CommunicationCenter communicationCenter = new CommunicationCenter();
-        VehicleDatabaseDAO vehicleDatabaseDAO = new LeitsystemSimpleVehicleDatabaseDAO();
-        vehicleDatabaseDAO.save(new Vehicle("Reserved"));
-        server.setCommunicationCenter(communicationCenter);
-        server.setVehicleDatabaseDAO(vehicleDatabaseDAO);
-        server.startServer();
+    public static void main(String[] args) {
+        try {
+            CentralServer server = new CentralServer();
+            CommunicationCenter communicationCenter = new CommunicationCenter();
+            VehicleDatabaseDAO vehicleDatabaseDAO = new LeitsystemSimpleVehicleDatabaseDAO();
+            vehicleDatabaseDAO.save(new Vehicle("Reserved"));
+            server.setCommunicationCenter(communicationCenter);
+            server.setVehicleDatabaseDAO(vehicleDatabaseDAO);
+            server.startServer();
 
-        TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
-        communicationCenter.setUI(UI);
-        SwingUtilities.invokeLater(UI);
+            TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
+            communicationCenter.setUI(UI);
+            SwingUtilities.invokeLater(UI);
+        } catch (Exception e) {
+            AlertUtils.alertExceptionStackTrace(e);
+        }
     }
 }

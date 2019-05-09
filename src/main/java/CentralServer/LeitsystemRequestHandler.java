@@ -77,6 +77,7 @@ public class LeitsystemRequestHandler extends Thread {
             } catch (Exception e) {
                 if (e.getClass() != BindException.class) {
                     e.printStackTrace();
+                    logExceptionStacktrace(e);
                     break;
                 }
                 port++;
@@ -162,6 +163,7 @@ public class LeitsystemRequestHandler extends Thread {
             handleRequest();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            logExceptionStacktrace(e);
         }
     }
 
@@ -179,5 +181,13 @@ public class LeitsystemRequestHandler extends Thread {
     private void logCarState(Vehicle vehicle){
         System.out.println("Newly updated vehicle");
         System.out.println(vehicle);
+    }
+
+    private void logExceptionStacktrace(Exception e){
+        System.out.println(e.getClass().getName());
+        for (StackTraceElement stackTraceElement :
+                e.getStackTrace()) {
+            System.out.println("at " + stackTraceElement);
+        }
     }
 }
