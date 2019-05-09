@@ -40,7 +40,7 @@ public class CommunicationCenter {
 
     private void logServerInfo(){
         System.out.println("Server info:");
-        NetworkUtils.printLocalMachineAddresses();
+        System.out.println(NetworkUtils.getLocalHostIP());
         System.out.println("Server Ready");
     }
 }
