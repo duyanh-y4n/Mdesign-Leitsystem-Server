@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffdf5e94-be34-41f7-ab10-5df4ca3bf015" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserInterface/Logger/Logger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/LogOutputUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableShowLogAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/TableGraphicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/TableUpdateAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableUpdateAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/VehicleTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/VehicleTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,33 +37,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CentralServer/CommunicationServer/CommunicationCenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-135">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CentralServer/LeitsystemRequestHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="79" column="20" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="195">
               <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -81,20 +58,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CentralServer/CentralServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#705#706#0" expanded="true" />
-                <element signature="e#759#760#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -106,10 +69,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="51">
+              <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/LogOutputUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableShowLogAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#377#378#0" expanded="true" />
+                <element signature="e#406#407#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,8 +116,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/VehicleTableModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-147">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
@@ -137,13 +138,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CentralServer/CommunicationServer/InfoServer.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/Logger/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="30">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -166,11 +164,12 @@
       <find>set</find>
       <find>system.out</find>
       <find>tos</find>
-      <find>try</find>
       <find>getmes</find>
       <find>thro</find>
       <find>throws</find>
       <find>throw</find>
+      <find>p</find>
+      <find>try</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,12 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Message/Enum/RequestID.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Message/Enum/LeitsystemResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Message/Enum/LeitsystemRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CentralServer/LeitSystemRequestHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Message/LeitsystemRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CentralServer/CommunicationCenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/CentralServer/MessageSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/CentralServer/MessageMulticastSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/CentralServer/ServerConfig.java" />
@@ -217,7 +210,6 @@
         <option value="$PROJECT_DIR$/src/main/java/CentralServer/DataServer/LeitsystemSimpleVehicleDatabaseDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/VehicleDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/GraphicUI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGraphicUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableUpdateAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/VehicleTableModel.java" />
@@ -230,6 +222,13 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/VehicleTableModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/Logger/ErrorLogControl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/Logger/Logger.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableShowLog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableShowLogAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/LogOutputUI.java" />
       </list>
     </option>
   </component>
@@ -304,6 +303,24 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="UserInterface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mdesign-Letsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mdesign-Leitsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="UserInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="Logger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Mdesign-Letsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Mdesign-Leitsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="UserInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="TableGUI" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -452,7 +469,7 @@
       <workItem from="1557256413545" duration="5903000" />
       <workItem from="1557263902492" duration="677000" />
       <workItem from="1557434286346" duration="1828000" />
-      <workItem from="1557438384195" duration="2784000" />
+      <workItem from="1557438384195" duration="6171000" />
     </task>
     <servers />
   </component>
@@ -489,7 +506,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174138000" />
+    <option name="totallyTimeSpent" value="177525000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1323" height="743" extended-state="6" />
@@ -505,7 +522,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49882537" weight="0.39087948" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49882537" visible="true" weight="0.39087948" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -514,7 +531,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49882537" weight="0.514658" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5011746" side_tool="true" weight="0.3257329" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49960846" visible="true" weight="0.35993487" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49960846" weight="0.35993487" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.32899022" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -624,31 +641,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/TrafficSystemLogic/Area.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="40" column="22" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Message/LeitsystemResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/libraries/Java_UDP_Server_1_0_SNAPSHOT.xml" />
     <entry file="jar://$USER_HOME$/Java_UDP_Server-1.0-SNAPSHOT.jar!/com/y4n/Utils/NetworkUtils.class" />
     <entry file="jar://$USER_HOME$/Java_UDP_Server-1.0-SNAPSHOT.jar!/Main.class" />
     <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/lang/Thread.java">
@@ -781,13 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -995,13 +980,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        <state relative-caret-position="60">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/VehicleTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/javax/swing/ButtonGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-451">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1009,16 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="56" lean-forward="true" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1032,10 +1021,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/VehicleTableModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/Logger/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        <state relative-caret-position="30">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableShowLogAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/TableGraphicUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserInterface/TableGUI/LogOutputUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

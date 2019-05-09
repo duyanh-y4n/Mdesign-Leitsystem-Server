@@ -10,17 +10,18 @@ public class TableGraphicUI implements Runnable, UserInterface{
     private JFrame frame;
     private VehicleTableModel vehicleTableModel;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
+    private JTextArea logText;
+    private LogOutputUI logOutputUI;
 
     public TableGraphicUI(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
         this.vehicleTableModel = new VehicleTableModel(this.vehicleDatabaseDAO);
+        this.logOutputUI = new LogOutputUI(new JTextArea());
         updateData();
     }
 
     private void createComponents(Container container) {
         container.setLayout(new BorderLayout());
-        JLabel text = new JLabel("Leitsystem - Vehicle status");
-        container.add(text, BorderLayout.NORTH);
 
         this.vehicleTableModel.updateTableModel();
         JTable table = new JTable();
@@ -30,7 +31,14 @@ public class TableGraphicUI implements Runnable, UserInterface{
 
         JButton updateBtn = new JButton("update");
         updateBtn.addActionListener(new TableUpdateAction(this.vehicleTableModel));
-        container.add(updateBtn, BorderLayout.SOUTH);
+        JButton logBtn = new JButton("show log");
+        logBtn.addActionListener(new TableShowLogAction(this.logText,this.logOutputUI));
+
+        Container buttonMenu = new JPanel();
+        buttonMenu.setLayout(new GridLayout(1,2));
+        buttonMenu.add(updateBtn);
+        buttonMenu.add(logBtn);
+        container.add(buttonMenu, BorderLayout.SOUTH);
     }
 
     public JFrame getFrame() {
@@ -39,7 +47,7 @@ public class TableGraphicUI implements Runnable, UserInterface{
 
     @Override
     public void run() {
-        this.frame = new JFrame("Title");
+        this.frame = new JFrame("Leitsystem - Vehicle status");
         this.frame.setPreferredSize(new Dimension(800, 300));
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -53,5 +61,10 @@ public class TableGraphicUI implements Runnable, UserInterface{
     @Override
     public void updateData() {
         this.vehicleTableModel.updateTableModel();
+    }
+
+    @Override
+    public void log() {
+
     }
 }
