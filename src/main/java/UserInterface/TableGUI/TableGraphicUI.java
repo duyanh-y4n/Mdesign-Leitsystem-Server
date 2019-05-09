@@ -1,6 +1,7 @@
-package UserInterface;
+package UserInterface.TableGUI;
 
 import CentralServer.DataServer.VehicleDatabaseDAO;
+import UserInterface.UserInterface;
 
 import javax.swing.*;
 import java.awt.*;

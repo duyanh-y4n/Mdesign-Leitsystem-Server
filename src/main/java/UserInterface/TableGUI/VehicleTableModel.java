@@ -1,7 +1,8 @@
-package UserInterface;
+package UserInterface.TableGUI;
 
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
+import UserInterface.*;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

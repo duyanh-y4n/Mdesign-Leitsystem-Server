@@ -3,7 +3,7 @@ import CentralServer.CommunicationServer.CommunicationCenter;
 import CentralServer.DataServer.LeitsystemSimpleVehicleDatabaseDAO;
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
-import UserInterface.TableGraphicUI;
+import UserInterface.TableGUI.TableGraphicUI;
 import Utils.AlertUtils;
 
 import javax.swing.*;
