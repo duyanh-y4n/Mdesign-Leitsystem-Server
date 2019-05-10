@@ -38,7 +38,6 @@ public class LeitsystemRequestHandler extends Thread {
         RequestID requestID = RequestID.values()[requestIDCode];
         String logMessage;
 
-        //TODO: response will be parse here (Logic of the system)
         switch (requestID) {
             case NONE:
                 logMessage = "    " + ResponseID.NONE.toString() + " to " + requestID.toString() + ":";
@@ -46,7 +45,7 @@ public class LeitsystemRequestHandler extends Thread {
                 logRequest();
                 break;
             case REGISTER_REQ:
-                logMessage ="    " + ResponseID.REGISTER_ID_RES.toString().toString() + " to " + requestID + ":";
+                logMessage = "    " + ResponseID.REGISTER_ID_RES.toString().toString() + " to " + requestID + ":";
                 log(logMessage);
                 logRequest();
                 handleRegisterReq();
@@ -68,9 +67,10 @@ public class LeitsystemRequestHandler extends Thread {
     private void sendResponse() {
         int port = ServerConfig.UNICAST_SENDER_PORT;
         String logMessage;
+        MessageUnicastSender sender;
         while (true) {
             try {
-                MessageUnicastSender sender = new MessageUnicastSender(port);
+                sender = new MessageUnicastSender(port);
                 sender.send(this.response.getRawContent(), this.requestPacket.getAddress(), this.requestPacket.getPort());
                 Vehicle vehicle = this.vehicleDatabaseDAO.get(
                         this.response.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER]
@@ -78,6 +78,8 @@ public class LeitsystemRequestHandler extends Thread {
                 logMessage = "    Response sent on port " + port + " to " + vehicle.getName()
                         + " at " + vehicle.getIP().toString();
                 log(logMessage);
+                // TODO: BUG: cant reach this statement, sender wont automatically close on Exception, cause overflow of sender
+                // Solution: catch Error when new unhandled Exception happen
                 sender.close();
                 break;
             } catch (Exception e) {
@@ -111,8 +113,10 @@ public class LeitsystemRequestHandler extends Thread {
             header[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER] = (byte) newVehicle.getId();
         } else {
             String logMessage = "Vehicle already registered - sending back ID";
+            byte registeredID = (byte) this.vehicleDatabaseDAO.getAll().indexOf(newVehicle);
             log(logMessage);
-            body = new byte[]{(byte) (this.vehicleDatabaseDAO.getAll().indexOf(newVehicle))};
+            body = new byte[]{registeredID};
+            header[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER] = registeredID;
         }
 
         this.response = new LeitsystemResponse(header, body);
@@ -204,10 +208,11 @@ public class LeitsystemRequestHandler extends Thread {
                 e.getStackTrace()) {
             logMessage = logMessage.concat("\nat " + stackTraceElement);
         }
+        logMessage = logMessage.concat("\n\n(Server Still running, dont worry)");
         log(logMessage);
     }
 
-    private void log(String logMessage){
+    private void log(String logMessage) {
         System.out.println(logMessage);
         this.UI.log(logMessage);
     }

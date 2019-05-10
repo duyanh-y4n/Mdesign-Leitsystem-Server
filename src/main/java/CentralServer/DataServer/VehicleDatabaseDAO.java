@@ -8,7 +8,6 @@ public abstract class VehicleDatabaseDAO implements BaseDAO<Vehicle> {
     protected List<Vehicle> vehicleList;
 
 
-    //TODO: handle Error when get no id
     @Override
     public Vehicle get(int id) {
         try {

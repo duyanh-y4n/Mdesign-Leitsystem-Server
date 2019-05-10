@@ -1,5 +1,6 @@
 package CentralServer.CommunicationServer;
 
+import CentralServer.ServerConfig;
 import com.y4n.UDP.UDPMulticastSender;
 import com.y4n.Utils.DataFormatUtils;
 import com.y4n.Utils.NetworkUtils;
@@ -30,7 +31,7 @@ public class InfoServer extends Thread {
             while (true) {
                 byte[] ServerInfo = this.getIPAndPortAsPacketInBytes();
                 sender.sendPacket(ServerInfo);
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(ServerConfig.SERVER_INFO_SENDING_INTERVAL);
             }
         } catch (Exception e) {
             e.printStackTrace();
