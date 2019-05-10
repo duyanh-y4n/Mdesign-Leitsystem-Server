@@ -6,6 +6,7 @@ import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;
 import UserInterface.UserInterface;
+import Utils.AlertUtils;
 import com.y4n.UDP.UDPUnicast;
 import com.y4n.Utils.MessageUtils.Enum.RequestType;
 
@@ -53,6 +54,7 @@ public class MessageListener extends Thread {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            AlertUtils.alertExceptionStackTrace(e);
         }
     }
 
@@ -89,5 +91,6 @@ public class MessageListener extends Thread {
 
     public void logTime(){
         System.out.println("\n\n---------" + Calendar.getInstance().getTime() + "--------");
+        this.UI.log("Log time");
     }
 }

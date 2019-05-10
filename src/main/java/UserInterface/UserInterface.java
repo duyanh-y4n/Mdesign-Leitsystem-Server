@@ -1,6 +1,6 @@
 package UserInterface;
 
 public interface UserInterface {
-    public void updateData();
-    public void log();
+    void updateData();
+    void log(String message);
 }

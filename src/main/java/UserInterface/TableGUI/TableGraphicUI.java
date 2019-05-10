@@ -10,13 +10,14 @@ public class TableGraphicUI implements Runnable, UserInterface{
     private JFrame frame;
     private VehicleTableModel vehicleTableModel;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
-    private JTextArea logText;
+    private JTextArea logTextArea;
     private LogOutputUI logOutputUI;
 
     public TableGraphicUI(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
         this.vehicleTableModel = new VehicleTableModel(this.vehicleDatabaseDAO);
-        this.logOutputUI = new LogOutputUI(new JTextArea());
+        this.logTextArea = new JTextArea();
+        this.logOutputUI = new LogOutputUI(this.logTextArea);
         updateData();
     }
 
@@ -32,7 +33,7 @@ public class TableGraphicUI implements Runnable, UserInterface{
         JButton updateBtn = new JButton("update");
         updateBtn.addActionListener(new TableUpdateAction(this.vehicleTableModel));
         JButton logBtn = new JButton("show log");
-        logBtn.addActionListener(new TableShowLogAction(this.logText,this.logOutputUI));
+        logBtn.addActionListener(new TableShowLogAction(this.logOutputUI));
 
         Container buttonMenu = new JPanel();
         buttonMenu.setLayout(new GridLayout(1,2));
@@ -64,7 +65,7 @@ public class TableGraphicUI implements Runnable, UserInterface{
     }
 
     @Override
-    public void log() {
-
+    public void log(String message) {
+        this.logTextArea.append(message);
     }
 }

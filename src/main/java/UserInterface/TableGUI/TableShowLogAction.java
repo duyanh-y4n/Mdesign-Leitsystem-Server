@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TableShowLogAction implements ActionListener {
-    private JTextArea logText;
     private LogOutputUI logOutputUI;
 
-    public TableShowLogAction(JTextArea logText, LogOutputUI logOutputUI){
-        this.logText = logText;
+    public TableShowLogAction(LogOutputUI logOutputUI){
         this.logOutputUI = logOutputUI;
     }
     @Override

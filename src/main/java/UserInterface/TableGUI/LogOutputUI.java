@@ -1,7 +1,5 @@
 package UserInterface.TableGUI;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,9 +15,7 @@ public class LogOutputUI implements Runnable{
     private void createComponents(Container container) {
         container.setLayout(new BorderLayout());
         container.setPreferredSize(new Dimension(800, 300));
-
         container.add(this.logText);
-        this.logText.setText("Hello");
     }
 
     public JFrame getFrame() {
