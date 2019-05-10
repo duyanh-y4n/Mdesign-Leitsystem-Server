@@ -15,7 +15,7 @@ public class LogOutputUI implements Runnable{
     private void createComponents(Container container) {
         container.setLayout(new BorderLayout());
         container.setPreferredSize(new Dimension(800, 300));
-        container.add(this.logText);
+        container.add(new JScrollPane(this.logText));
     }
 
     public JFrame getFrame() {

@@ -266,7 +266,7 @@ public class Vehicle extends Client {
     @Override
     public String toString() {
         List<String> literalStatus = this.getLiteralStatus();
-        return "Vehicle: " + this.name + "(" + this.getId() + ")" +
+        return "Vehicle: " + this.name + "(ID: " + this.getId() + ")" +
                 "\n\tStatus:" +
                 "\n\t\tPosition: " + literalStatus.get(MessageConfig.VEHICLE_LOCATION_POSITION_IN_BODY) +
                 "\n\t\tDirection: " + literalStatus.get(MessageConfig.VEHICLE_DIRECTION_POSITION_IN_BODY) +

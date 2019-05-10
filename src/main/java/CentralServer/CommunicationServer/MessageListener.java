@@ -84,13 +84,16 @@ public class MessageListener extends Thread {
     }
 
     //log function
-    private void logReceivedPacket(DatagramPacket packet){
-        System.out.println("Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":" + packet.getPort());
-        System.out.println("Handling Request");
+    private void logReceivedPacket(DatagramPacket packet) {
+        String message = "Request from Leitsystem Client at: " + packet.getAddress().getHostAddress() + ":"
+                + packet.getPort() + "Handling Request";
+        System.out.println(message);
+        this.UI.log(message);
     }
 
-    public void logTime(){
-        System.out.println("\n\n---------" + Calendar.getInstance().getTime() + "--------");
-        this.UI.log("Log time");
+    public void logTime() {
+        String message = "\n\n------------------" + Calendar.getInstance().getTime() + "-----------------------------------";
+        System.out.println(message);
+        this.UI.log(message);
     }
 }

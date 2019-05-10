@@ -6,7 +6,7 @@ import UserInterface.UserInterface;
 import javax.swing.*;
 import java.awt.*;
 
-public class TableGraphicUI implements Runnable, UserInterface{
+public class TableGraphicUI implements Runnable, UserInterface {
     private JFrame frame;
     private VehicleTableModel vehicleTableModel;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
@@ -36,7 +36,7 @@ public class TableGraphicUI implements Runnable, UserInterface{
         logBtn.addActionListener(new TableShowLogAction(this.logOutputUI));
 
         Container buttonMenu = new JPanel();
-        buttonMenu.setLayout(new GridLayout(1,2));
+        buttonMenu.setLayout(new GridLayout(1, 2));
         buttonMenu.add(updateBtn);
         buttonMenu.add(logBtn);
         container.add(buttonMenu, BorderLayout.SOUTH);
@@ -66,6 +66,6 @@ public class TableGraphicUI implements Runnable, UserInterface{
 
     @Override
     public void log(String message) {
-        this.logTextArea.append(message);
+        this.logTextArea.append(message + "\n");
     }
 }

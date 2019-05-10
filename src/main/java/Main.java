@@ -12,18 +12,20 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            CentralServer server = new CentralServer();
-            CommunicationCenter communicationCenter = new CommunicationCenter();
             VehicleDatabaseDAO vehicleDatabaseDAO = new LeitsystemSimpleVehicleDatabaseDAO();
             vehicleDatabaseDAO.save(new Vehicle("Reserved"));
+            TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
+
+            CentralServer server = new CentralServer();
+            CommunicationCenter communicationCenter = new CommunicationCenter();
+            communicationCenter.setUI(UI);
             server.setCommunicationCenter(communicationCenter);
             server.setVehicleDatabaseDAO(vehicleDatabaseDAO);
             server.startServer();
 
-            TableGraphicUI UI = new TableGraphicUI(vehicleDatabaseDAO);
-            communicationCenter.setUI(UI);
             SwingUtilities.invokeLater(UI);
         } catch (Exception e) {
+            e.printStackTrace();
             AlertUtils.alertExceptionStackTrace(e);
         }
     }

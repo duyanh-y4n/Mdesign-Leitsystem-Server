@@ -36,26 +36,30 @@ public class LeitsystemRequestHandler extends Thread {
     public void handleRequest() throws InterruptedException {
         byte requestIDCode = this.request.getHeader()[MessageConfig.MESSAGE_ID_POSITION_IN_HEADER];
         RequestID requestID = RequestID.values()[requestIDCode];
+        String logMessage;
 
         //TODO: response will be parse here (Logic of the system)
         switch (requestID) {
             case NONE:
-                System.out.println("    " + ResponseID.NONE + " to " + requestID + ":");
+                logMessage = "    " + ResponseID.NONE.toString() + " to " + requestID.toString() + ":";
+                log(logMessage);
                 logRequest();
                 break;
             case REGISTER_REQ:
-                System.out.println("    " + ResponseID.REGISTER_ID_RES + " to " + requestID + ":");
+                logMessage ="    " + ResponseID.REGISTER_ID_RES.toString().toString() + " to " + requestID + ":";
+                log(logMessage);
                 logRequest();
                 handleRegisterReq();
                 sendResponse();
                 break;
             case UPDATE_CAR_STATE_REQ:
-                System.out.println("    " + ResponseID.DRIVE_PERMISSTION_RES + " to " + requestID + ":");
+                logMessage = "    " + ResponseID.DRIVE_PERMISSTION_RES.toString() + " to " + requestID.toString() + ":";
+                log(logMessage);
                 logRequest();
                 if (handleCarStateReq()) sendResponse();
                 break;
             default:
-                System.out.println("none of Request ID was found!");
+                log("none of Request ID was found!");
                 break;
         }
         this.UI.updateData();
@@ -63,6 +67,7 @@ public class LeitsystemRequestHandler extends Thread {
 
     private void sendResponse() {
         int port = ServerConfig.UNICAST_SENDER_PORT;
+        String logMessage;
         while (true) {
             try {
                 MessageUnicastSender sender = new MessageUnicastSender(port);
@@ -70,8 +75,9 @@ public class LeitsystemRequestHandler extends Thread {
                 Vehicle vehicle = this.vehicleDatabaseDAO.get(
                         this.response.getHeader()[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER]
                 );
-                System.out.println("    Response sent on port " + port + " to " + vehicle.getName()
-                        + " at " + vehicle.getIP());
+                logMessage = "    Response sent on port " + port + " to " + vehicle.getName()
+                        + " at " + vehicle.getIP().toString();
+                log(logMessage);
                 sender.close();
                 break;
             } catch (Exception e) {
@@ -81,7 +87,8 @@ public class LeitsystemRequestHandler extends Thread {
                     break;
                 }
                 port++;
-                System.out.println("    Current port busy, change to port " + port);
+                logMessage = "    Current port busy, change to port " + port;
+                log(logMessage);
             }
         }
     }
@@ -97,12 +104,14 @@ public class LeitsystemRequestHandler extends Thread {
         newVehicle.setPort((short) this.requestPacket.getPort());
         newVehicle.setId(this.vehicleDatabaseDAO.getAll().size());
         if (this.vehicleDatabaseDAO.getAll().contains(newVehicle) == false) {
-            System.out.println("New Vehicle - sending back new ID!");
+            String logMessage = "New Vehicle - sending back new ID!";
+            log(logMessage);
             this.vehicleDatabaseDAO.save(newVehicle);
             body = new byte[]{(byte) newVehicle.getId()};
             header[MessageConfig.CLIENT_DEVICE_ID_POSITION_IN_HEADER] = (byte) newVehicle.getId();
         } else {
-            System.out.println("Vehicle already registered - sending back ID");
+            String logMessage = "Vehicle already registered - sending back ID";
+            log(logMessage);
             body = new byte[]{(byte) (this.vehicleDatabaseDAO.getAll().indexOf(newVehicle))};
         }
 
@@ -133,15 +142,16 @@ public class LeitsystemRequestHandler extends Thread {
 //            this.response = new LeitsystemResponse(header);
 //            logResponse();
 
-            System.out.println("Reject Request");
+            log("Wrong ID! No Vehicle found! Reject Request");
             sendResponseLater = false;
         } else if (carId == 0) {
-            System.out.println("Error: ID 0 is reserved for server");
+            log("Error: ID 0 is reserved for server! Reject Request");
             sendResponseLater = false;
         } else {
             Vehicle vehicle = this.vehicleDatabaseDAO.get(carId);
-            System.out.println("Found Vehicle: " + vehicle.getId() + "." +
-                    vehicle.getName() + " - IP: " + vehicle.getIP());
+            String logMessage = "Found Vehicle: " + vehicle.getId() + "." +
+                    vehicle.getName() + " - IP: " + vehicle.getIP().toString();
+            log(logMessage);
 
             header[MessageConfig.MESSAGE_TYPE_POSITION_IN_HEADER] = LeitsystemResponse.TYPE_NORMAL;
             byte clearance = trafficsystem.Process_vehicle_status(carId, carPostion, carDirection, carSpeed);
@@ -169,25 +179,36 @@ public class LeitsystemRequestHandler extends Thread {
 
     // Log function
     private void logRequest() {
-        System.out.println("    Request: " + DataFormatUtils.byteArrToHEXCharList(this.request.getHeader())
-                + DataFormatUtils.byteArrToHEXCharList(this.request.getBody()));
+        String message = "    Request: " + DataFormatUtils.byteArrToHEXCharList(this.request.getHeader()).toString()
+                + DataFormatUtils.byteArrToHEXCharList(this.request.getBody()).toString();
+        System.out.println(message);
+        this.UI.log(message);
     }
 
     private void logResponse() {
-        System.out.println("    Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getHeader())
-                + DataFormatUtils.byteArrToHEXCharList(this.response.getBody()));
+        String message = "    Response: " + DataFormatUtils.byteArrToHEXCharList(this.response.getHeader()).toString()
+                + DataFormatUtils.byteArrToHEXCharList(this.response.getBody()).toString();
+        System.out.println(message);
+        this.UI.log(message);
     }
 
-    private void logCarState(Vehicle vehicle){
-        System.out.println("Newly updated vehicle");
-        System.out.println(vehicle);
+    private void logCarState(Vehicle vehicle) {
+        String message = "Newly updated vehicle\n" + vehicle.toString();
+        System.out.println(message);
+        this.UI.log(message);
     }
 
-    private void logExceptionStacktrace(Exception e){
-        System.out.println(e.getClass().getName());
+    private void logExceptionStacktrace(Exception e) {
+        String logMessage = e.getClass().getName();
         for (StackTraceElement stackTraceElement :
                 e.getStackTrace()) {
-            System.out.println("at " + stackTraceElement);
+            logMessage = logMessage.concat("\nat " + stackTraceElement);
         }
+        log(logMessage);
+    }
+
+    private void log(String logMessage){
+        System.out.println(logMessage);
+        this.UI.log(logMessage);
     }
 }

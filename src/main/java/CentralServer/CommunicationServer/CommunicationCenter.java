@@ -39,8 +39,8 @@ public class CommunicationCenter {
     }
 
     private void logServerInfo(){
-        System.out.println("Server info:");
-        System.out.println(NetworkUtils.getLocalHostIP());
-        System.out.println("Server Ready");
+        String message = "Server info:\n" + NetworkUtils.getLocalHostIP() + "\nServer Ready";
+        System.out.println(message);
+        this.UI.log(message);
     }
 }
