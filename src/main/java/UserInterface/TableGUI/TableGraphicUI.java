@@ -9,15 +9,19 @@ import java.awt.*;
 public class TableGraphicUI implements Runnable, UserInterface {
     private JFrame frame;
     private VehicleTableModel vehicleTableModel;
+    private CrossroadTableModel crossroadTableModel;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
     private JTextArea logTextArea;
     private LogOutputUI logOutputUI;
+    private CrossroadTableUI crossroadTableUI;
 
     public TableGraphicUI(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
         this.vehicleTableModel = new VehicleTableModel(this.vehicleDatabaseDAO);
+        this.crossroadTableModel = new CrossroadTableModel();
         this.logTextArea = new JTextArea();
         this.logOutputUI = new LogOutputUI(this.logTextArea);
+        this.crossroadTableUI = new CrossroadTableUI(crossroadTableModel);
         updateData();
     }
 
@@ -30,9 +34,9 @@ public class TableGraphicUI implements Runnable, UserInterface {
 
         container.add(new JScrollPane(table), BorderLayout.CENTER);
 
-        JButton updateBtn = new JButton("update");
-        updateBtn.addActionListener(new TableUpdateAction(this.vehicleTableModel));
-        JButton logBtn = new JButton("show log");
+        JButton updateBtn = new JButton("Straßenplan");
+        updateBtn.addActionListener(new TableShowCrossroadAction(this.crossroadTableUI));
+        JButton logBtn = new JButton("Log");
         logBtn.addActionListener(new TableShowLogAction(this.logOutputUI));
 
         Container buttonMenu = new JPanel();
@@ -48,7 +52,7 @@ public class TableGraphicUI implements Runnable, UserInterface {
 
     @Override
     public void run() {
-        this.frame = new JFrame("Leitsystem - Vehicle status");
+        this.frame = new JFrame("Leitsystem - Registrierte Fahrzeuge");
         this.frame.setPreferredSize(new Dimension(800, 300));
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +66,7 @@ public class TableGraphicUI implements Runnable, UserInterface {
     @Override
     public void updateData() {
         this.vehicleTableModel.updateTableModel();
+        this.crossroadTableModel.updateTableModel();
     }
 
     @Override

@@ -10,11 +10,11 @@ import java.util.List;
 
 public class VehicleTableModel extends AbstractTableModel {
     String[] columnNames = {"ID",
-            "Vehicle Name",
+            "Name",
             "Position",
-            "Direction",
-            "Speed",
-            "drive permission"};
+            "Richtung",
+            "Geschwindigkeit",
+            "Freigabe"};
     private List<VehicleDTO> vehicles;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
 
@@ -45,7 +45,7 @@ public class VehicleTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
 
     @Override

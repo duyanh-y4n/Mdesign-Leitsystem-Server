@@ -35,12 +35,12 @@ public class Crossroad {
         this.name = name;
     }
 
-    public boolean Occupie_Area(int priority, Area Area_to_book){
+    public boolean Occupie_Area(Area Area_to_book){
         Area area_temp = new Area();
         boolean success = true;
         for (int i = 0; i<=3; i++){
             if(Area_to_book.getField(i)==1){
-                area_temp.setField(i,(byte)priority);
+                area_temp.setField(i,(byte)1);
             }else if (Area_to_book.getField(i)==0){
                 area_temp.setField(i,(byte) 0);
             }else{
@@ -56,6 +56,7 @@ public class Crossroad {
             for(int i = 0; i<=3; i++){
                 if(area_temp.getField(i)>Area_occupied.getField(i)){
                     Area_occupied.setField(i,(byte) area_temp.getField(i));
+
                 }
             }
         }

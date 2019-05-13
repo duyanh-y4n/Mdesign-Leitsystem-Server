@@ -128,15 +128,15 @@ public class Vehicle extends Client {
             switch (this.position & 0xF0) {
                 case 160:
                     this.Crossroad_current = Crossroad_A;
-                    return 0;
+                    return 1;
 
                 case 176:
                     this.Crossroad_current = Crossroad_B;
-                    return 0;
+                    return 1;
 
                 case 192:
                     this.Crossroad_current = Crossroad_C;
-                    return 0;
+                    return 1;
 
                 default:
                     System.out.println("Unregistered position, Crossroad can't be determined");
@@ -145,7 +145,7 @@ public class Vehicle extends Client {
         }
     }
 
-    public void determine_priority() {
+    /*public void determine_priority() {
         switch (this.position & 0xF0) {
             case 160:
                 switch (this.position & 0x0F) {
@@ -237,23 +237,30 @@ public class Vehicle extends Client {
                 break;
         }
     }
-
+*/
     public void determine_Area() {
         Area_to_book.setIndex(this.position & 0x0F);
         Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
-        if (this.direction != 0x01) {
+        if (this.direction == (byte) 0x00||this.direction==(byte) 0x10) {
             Area_to_book.raiseIndex(1);
             Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
         }
-        if (this.direction == 0x10) {
+        if (this.direction == (byte) 0x10) {
             Area_to_book.raiseIndex(1);
             Area_to_book.setField(Area_to_book.getIndex(), (byte) 0x01);
         }
     }
 
+    public void reset_Area(){
+        this.Area_to_book.setField(0,(byte)0x00);
+        this.Area_to_book.setField(1,(byte)0x00);
+        this.Area_to_book.setField(2,(byte)0x00);
+        this.Area_to_book.setField(3,(byte)0x00);
+    }
+
     public boolean book_Area() {
         if ((this.position & 0x0F) < 4) {
-            return Crossroad_current.Occupie_Area(this.priority, this.Area_to_book);
+            return Crossroad_current.Occupie_Area( this.Area_to_book);
         } else {
             return false;
         }
@@ -271,7 +278,9 @@ public class Vehicle extends Client {
                 "\n\t\tPosition: " + literalStatus.get(MessageConfig.VEHICLE_LOCATION_POSITION_IN_BODY) +
                 "\n\t\tDirection: " + literalStatus.get(MessageConfig.VEHICLE_DIRECTION_POSITION_IN_BODY) +
                 "\n\t\tSpeed: " + literalStatus.get(MessageConfig.VEHICLE_SPEED_POSITION_IN_BODY) +
-                "\n\t\tDrive Permission: " + this.clearance;
+                "\n\t\tDrive Permission: " + this.clearance+
+                "\n\t\tCrossroad_current: " + this.getCrossroad_current().getName()+
+        "\n\t\tArea_to_book: " + this.Area_to_book.getField(0)+ this.Area_to_book.getField(1)+ this.Area_to_book.getField(2)+ this.Area_to_book.getField(3);
     }
 
     public List<String> getLiteralStatus() {
@@ -279,13 +288,13 @@ public class Vehicle extends Client {
         List<String> literalStatus = DataFormatUtils.byteArrToHEXCharList(status);
 
         if (this.direction == 0x01) {
-            literalStatus.add("Right");
+            literalStatus.add("Rechts");
         } else if (this.direction == 0x10) {
-            literalStatus.add("Left");
+            literalStatus.add("Links");
         } else if (this.direction == 0x00) {
-            literalStatus.add("Straight");
+            literalStatus.add("Geradeaus");
         } else {
-            literalStatus.add("Unknown Direction");
+            literalStatus.add("Error");
         }
 
         literalStatus.add(Integer.toString(this.speed));
