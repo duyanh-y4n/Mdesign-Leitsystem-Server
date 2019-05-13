@@ -70,7 +70,6 @@ public class Trafficsystem {
         if (Processed_vehicle.determine_crossroad(Crossroad_A, Crossroad_B, Crossroad_C) == 1) {
             if ((Processed_vehicle.getPosition() & 0x0F) < 4) {
                 //Processed_vehicle.determine_priority();
-                System.out.println("1");
                 Processed_vehicle.clear_Area();
                 Processed_vehicle.reset_Area();
                 Processed_vehicle.determine_Area();
@@ -84,7 +83,6 @@ public class Trafficsystem {
                     return Processed_vehicle.getClearance();
                 }
             } else if ((Processed_vehicle.getPosition() & 0x0F) < 8) {
-                System.out.println("2");
                 Processed_vehicle.clear_Area();
                 Processed_vehicle.reset_Area();
                 Processed_vehicle.setClearance((byte) 0x01);
