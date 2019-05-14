@@ -1,24 +1,7 @@
 package UserInterface.TableGUI;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
-import Client.Vehicle;
-import TrafficSystemLogic.Crossroad;
 import TrafficSystemLogic.CrossroadList;
-import UserInterface.*;
-import java.util.ArrayList;
-import java.util.List;
-import TrafficSystemLogic.Trafficsystem;
-
-
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-
-
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class CrossroadTableModel extends AbstractTableModel {
     String[] columnNames = {"",
@@ -80,11 +63,14 @@ public class CrossroadTableModel extends AbstractTableModel {
                     return "3";
                 }
             case 3:
-                if (columnIndex>=4&&columnIndex!=6&&columnIndex!=7){
+                if (columnIndex>4&&columnIndex!=6&&columnIndex!=7){
                     return  "4";
                 }
                 if (columnIndex==6||columnIndex==7){
                     return "2";
+                }
+                if(columnIndex==4){
+                    return CrossroadList.Crossroad_A.getArea_parked().getField(0);
                 }
                 else {
                     return "3";

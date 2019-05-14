@@ -4,11 +4,21 @@ public class Crossroad {
     protected String name;
     protected Area Area_of_positions;
     protected Area Area_occupied;
+    protected Area Area_parked;
 
     Crossroad(String name, byte position0, byte position1, byte position2, byte position3){
         this.name = name;
         this.Area_of_positions = new Area(0, position0, position1, position2, position3);
         this.Area_occupied = new Area();
+        this.Area_parked = new Area();
+    }
+
+    public Area getArea_parked() {
+        return this.Area_parked;
+    }
+
+    public void setArea_parked(int index, int ID) {
+        Area_parked.setField(index, (byte) ID);
     }
 
     public Area getArea_occupied() {
@@ -70,5 +80,6 @@ public class Crossroad {
             }
         }
     }
+
 }
 

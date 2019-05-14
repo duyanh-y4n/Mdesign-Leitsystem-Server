@@ -79,6 +79,7 @@ public class Trafficsystem {
                     return Processed_vehicle.getClearance();
                 } else {
                     Processed_vehicle.setClearance((byte) 0x00);
+                    Processed_vehicle.Park_Vehicle();
                     Processed_vehicle.reset_Area();
 
                     return Processed_vehicle.getClearance();

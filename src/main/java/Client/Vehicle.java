@@ -300,4 +300,11 @@ public class Vehicle extends Client {
         literalStatus.add(Integer.toString(this.speed));
         return literalStatus;
     }
+    public void Park_Vehicle(){
+        for(int i = 0; i<=3; i++){
+            if(this.Crossroad_current.getArea_of_positions().getField(i)==this.position){
+                this.Crossroad_current.setArea_parked(i,this.getId());
+            }
+        }
+    }
 }
