@@ -18,10 +18,10 @@ public class CrossroadTableUI implements Runnable{
 
     private void createComponents(Container container) {
         container.setLayout(new BorderLayout());
-        container.setPreferredSize(new Dimension(800, 800));
+        container.setPreferredSize(new Dimension(800, 750));
         JTable table=new JTable(this.crossroadTableModel);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        table.setRowHeight(100);
+        table.setRowHeight(75);
 
         DefaultTableCellRenderer ren = new CrossroadTableCellRenderer() {
             @Override
@@ -47,11 +47,13 @@ public class CrossroadTableUI implements Runnable{
                     setForeground(Color.BLACK);
 
 
+
                 }
                 else if(value.toString().equals("3"))
                 {
-                    setBackground(Color.WHITE);
-                    setForeground(Color.WHITE);
+                    setBackground(Color.BLACK);
+                    setForeground(Color.BLACK);
+
 
                 }
                 else if(value.toString().equals("4"))
@@ -59,10 +61,14 @@ public class CrossroadTableUI implements Runnable{
                     setBackground(Color.GRAY);
                     setForeground(Color.GRAY);
 
+
                 }
                 else{
+
                 }
 
+                table.setShowGrid(false);
+                table.setIntercellSpacing(new Dimension(0, 0));
                 table.repaint();
                 return this;
             }
@@ -79,7 +85,7 @@ public class CrossroadTableUI implements Runnable{
     @Override
     public void run() {
         this.frame = new JFrame("Straßenplan");
-        this.frame.setPreferredSize(new Dimension(800, 840));
+        this.frame.setPreferredSize(new Dimension(800, 790));
 
         this.frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 

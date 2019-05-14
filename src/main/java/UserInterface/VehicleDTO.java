@@ -44,8 +44,13 @@ public class VehicleDTO {
         return this.speed;
     }
 
-    public boolean isDrivePermission() {
-        return this.drivePermission;
+    public String isDrivePermission() {
+        if( this.drivePermission==true){
+            return "unbeeinflusst (1)";
+        }
+        else{
+            return "angehalten (0)";
+        }
     }
 
     @Override

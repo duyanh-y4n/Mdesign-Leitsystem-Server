@@ -13,7 +13,7 @@ public class VehicleTableModel extends AbstractTableModel {
             "Name",
             "Position",
             "Richtung",
-            "Geschwindigkeit",
+            "Geschwindigkeit in m/s",
             "Freigabe"};
     private List<VehicleDTO> vehicles;
     private VehicleDatabaseDAO vehicleDatabaseDAO;

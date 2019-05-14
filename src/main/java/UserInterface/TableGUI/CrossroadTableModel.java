@@ -28,8 +28,10 @@ public class CrossroadTableModel extends AbstractTableModel {
             "",
             "",
             "",
+            "",
+            "",
             ""};
-    String[][] RowData= new String[8][8];
+    String[][] RowData= new String[10][10];
 
 
 
@@ -42,111 +44,131 @@ public class CrossroadTableModel extends AbstractTableModel {
     }
 
     public int getRowCount() {
-        return 8;
+        return 10;
     }
 
     @Override
     public int getColumnCount() {
-        return 8;
+        return 10;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (rowIndex){
             case 0:
-                if (columnIndex>=3){
+                if (columnIndex>=4){
                     return  "4";
                 }
                 else {
                     return "3";
                 }
             case 1:
-                if (columnIndex>=3){
+                if (columnIndex>=4){
                     return  "4";
                 }
                 else {
                     return "3";
                 }
             case 2:
-                if (columnIndex>=3&&columnIndex!=5){
+                if (columnIndex>=4&&columnIndex!=6&&columnIndex!=7){
                     return  "4";
                 }
-                if (columnIndex==5){
+                if (columnIndex==6||columnIndex==7){
+                    return "2";
+                }
+                else {
+                    return "3";
+                }
+            case 3:
+                if (columnIndex>=4&&columnIndex!=6&&columnIndex!=7){
+                    return  "4";
+                }
+                if (columnIndex==6||columnIndex==7){
                     return "2";
                 }
                 else {
                     return "3";
                 }
 
-            case 3:
-                if (columnIndex<3||columnIndex==5){
+            case 4:
+                if (columnIndex<4||columnIndex==6||columnIndex==7){
                     return  "4";
                 }
-                else if(columnIndex==3){
+                else if(columnIndex==4){
                     return CrossroadList.Crossroad_A.getArea_occupied().getField(0);
                 }
-                else if(columnIndex==4){
+                else if(columnIndex==5){
                     return CrossroadList.Crossroad_A.getArea_occupied().getField(3);
                 }
-                else if(columnIndex==6){
+                else if(columnIndex==8){
                     return CrossroadList.Crossroad_B.getArea_occupied().getField(0);
                 }
-                else if(columnIndex==7){
+                else if(columnIndex==9){
                     return CrossroadList.Crossroad_B.getArea_occupied().getField(3);
                 }
                 else {
                     return "3";
                 }
-            case 4:
-                if (columnIndex<3||columnIndex==5){
+            case 5:
+                if (columnIndex<4||columnIndex==6||columnIndex==7){
                     return  "4";
                 }
-                else if(columnIndex==3){
+                else if(columnIndex==4){
                     return CrossroadList.Crossroad_A.getArea_occupied().getField(1);
                 }
-                else if(columnIndex==4){
+                else if(columnIndex==5){
                     return CrossroadList.Crossroad_A.getArea_occupied().getField(2);
                 }
-                else if(columnIndex==6){
+                else if(columnIndex==8){
                     return CrossroadList.Crossroad_B.getArea_occupied().getField(1);
                 }
-                else if(columnIndex==7){
+                else if(columnIndex==9){
                     return CrossroadList.Crossroad_B.getArea_occupied().getField(2);
                 }
                 else {
                     return "3";
                 }
-            case 5:
-                if (columnIndex!=2&&columnIndex!=5){
+            case 6:
+                if (columnIndex!=2&&columnIndex!=3&&columnIndex!=6&&columnIndex!=7){
                     return  "4";
                 }
-                if (columnIndex==2||columnIndex==5){
+                if (columnIndex==2||columnIndex==3||columnIndex==6||columnIndex==7){
                     return "2";
                 }
                 else {
                     return "3";
                 }
-            case 6:
-                if (columnIndex!=3&&columnIndex!=4){
+            case 7:
+                if (columnIndex!=2&&columnIndex!=3&&columnIndex!=6&&columnIndex!=7){
                     return  "4";
                 }
-                else if(columnIndex==3){
-                    return CrossroadList.Crossroad_C.getArea_occupied().getField(0);
+                if (columnIndex==2||columnIndex==3||columnIndex==6||columnIndex==7){
+                    return "2";
+                }
+                else {
+                    return "3";
+                }
+            case 8:
+                if (columnIndex!=4&&columnIndex!=5){
+                    return  "4";
                 }
                 else if(columnIndex==4){
+                    return CrossroadList.Crossroad_C.getArea_occupied().getField(0);
+                }
+                else if(columnIndex==5){
                     return CrossroadList.Crossroad_C.getArea_occupied().getField(3);
                 }
                 else {
                     return "3";
                 }
-            case 7:
-                if (columnIndex!=3&&columnIndex!=4){
+            case 9:
+                if (columnIndex!=4&&columnIndex!=5){
                     return  "4";
                 }
-                else if(columnIndex==3){
+                else if(columnIndex==4){
                     return CrossroadList.Crossroad_C.getArea_occupied().getField(0);
                 }
-                else if(columnIndex==4){
+                else if(columnIndex==5){
                     return CrossroadList.Crossroad_C.getArea_occupied().getField(3);
                 }
                 else {
