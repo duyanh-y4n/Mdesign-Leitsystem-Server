@@ -61,34 +61,45 @@ public class Trafficsystem {
 
     public byte Process_vehicle_status(byte ID, byte position, byte direction, byte speed) {
         Vehicle Processed_vehicle = accessVehicle(ID);
+
+
         if (Processed_vehicle == null) {
             return 0;
         }
         Processed_vehicle.setStatus(position, direction, speed);
         if (Processed_vehicle.determine_crossroad(Crossroad_A, Crossroad_B, Crossroad_C) == 1) {
             if ((Processed_vehicle.getPosition() & 0x0F) < 4) {
-                Processed_vehicle.determine_priority();
+                //Processed_vehicle.determine_priority();
+                Processed_vehicle.clear_Area();
+                Processed_vehicle.reset_Area();
                 Processed_vehicle.determine_Area();
                 if (Processed_vehicle.book_Area()) {
                     Processed_vehicle.setClearance((byte) 0x01);
+
                     return Processed_vehicle.getClearance();
                 } else {
                     Processed_vehicle.setClearance((byte) 0x00);
+                    Processed_vehicle.reset_Area();
+
                     return Processed_vehicle.getClearance();
                 }
             } else if ((Processed_vehicle.getPosition() & 0x0F) < 8) {
                 Processed_vehicle.clear_Area();
-                Processed_vehicle.setClearance((byte) 0x00);
+                Processed_vehicle.reset_Area();
+                Processed_vehicle.setClearance((byte) 0x01);
+
                 return Processed_vehicle.getClearance();
 
             } else {
                 System.out.println("Unknown Position on " + Processed_vehicle.getCrossroad_current().getName() + ", vehiclestatus was not processed");
                 Processed_vehicle.setClearance((byte) 0x00);
+
                 return Processed_vehicle.getClearance();
             }
         } else {
             System.out.println("Unknown Crossroad, vehicle status was not processed");
             Processed_vehicle.setClearance((byte) 0x00);
+
             return Processed_vehicle.getClearance();
         }
     }
