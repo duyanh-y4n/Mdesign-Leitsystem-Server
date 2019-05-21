@@ -23,16 +23,16 @@ public class CrossroadTableProperties {
     RotatedIcon KeineVohrfahrt_up ;
 
     public CrossroadTableProperties(){
-        this.HawIcon=this.getImg("D:\\Documents\\GitHub\\Mdesign-Leitsystem-Server\\src\\main\\java\\UserInterface\\TableGUI\\logo.png",157,75);
+        this.HawIcon=this.getImg("src/main/java/UserInterface/TableGUI/logo.png",157,75);
 
-        this.VehicleIcon_left=this.getImg("D:\\Documents\\GitHub\\Mdesign-Leitsystem-Server\\src\\main\\java\\UserInterface\\TableGUI\\Auto.png",70,50);
+        this.VehicleIcon_left=this.getImg("src/main/java/UserInterface/TableGUI/Auto.png",70,50);
         this.VehicleIcon_down=new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.UP);
         this.VehicleIcon_right=new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.UPSIDE_DOWN);
         this.VehicleIcon_up=new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.DOWN);
 
-        this.Vohrfahrt=this.getImg("D:\\Documents\\GitHub\\Mdesign-Leitsystem-Server\\src\\main\\java\\UserInterface\\TableGUI\\Vorfahrtsstrasse.png",30,30);
+        this.Vohrfahrt=this.getImg("src/main/java/UserInterface/TableGUI/Vorfahrtsstrasse.png",30,30);
 
-        this.KeineVohrfahrt_left=this.getImg("D:\\Documents\\GitHub\\Mdesign-Leitsystem-Server\\src\\main\\java\\UserInterface\\TableGUI\\Vohrfahrtgewaehren.png",30,30);
+        this.KeineVohrfahrt_left=this.getImg("src/main/java/UserInterface/TableGUI/Vohrfahrtgewaehren.png",30,30);
         this.KeineVohrfahrt_down=new RotatedIcon(KeineVohrfahrt_left, RotatedIcon.Rotate.UP);
         this.KeineVohrfahrt_up=new RotatedIcon(KeineVohrfahrt_left, RotatedIcon.Rotate.DOWN);
     }
