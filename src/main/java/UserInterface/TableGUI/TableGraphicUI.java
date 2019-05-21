@@ -15,6 +15,7 @@ public class TableGraphicUI implements Runnable, UserInterface {
     private LogOutputUI logOutputUI;
     private CrossroadTableUI crossroadTableUI;
 
+
     public TableGraphicUI(VehicleDatabaseDAO vehicleDatabaseDAO) {
         this.vehicleDatabaseDAO = vehicleDatabaseDAO;
         this.vehicleTableModel = new VehicleTableModel(this.vehicleDatabaseDAO);
@@ -31,6 +32,7 @@ public class TableGraphicUI implements Runnable, UserInterface {
         this.vehicleTableModel.updateTableModel();
         JTable table = new JTable();
         table.setModel(this.vehicleTableModel);
+
 
         container.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -53,7 +55,7 @@ public class TableGraphicUI implements Runnable, UserInterface {
     @Override
     public void run() {
         this.frame = new JFrame("Leitsystem - Registrierte Fahrzeuge");
-        this.frame.setPreferredSize(new Dimension(800, 300));
+        this.frame.setPreferredSize(new Dimension(850, 300));
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
