@@ -13,20 +13,16 @@ public class Crossroad {
         this.Area_parked = new Area();
     }
 
-    public Area getArea_parked() {
-        return this.Area_parked;
-    }
-
-    public void setArea_parked(int index, int ID) {
-        Area_parked.setField(index, (byte) ID);
-    }
-
     public Area getArea_occupied() {
         return Area_occupied;
     }
 
     public Area getArea_of_positions() {
         return Area_of_positions;
+    }
+
+    public Area getArea_parked() {
+        return Area_parked;
     }
 
     public String getName() {
@@ -39,6 +35,10 @@ public class Crossroad {
 
     public void setArea_of_positions(Area area_of_positions) {
         Area_of_positions = area_of_positions;
+    }
+
+    public void setArea_parked(String name, int index) {
+        Area_parked.setName(name,index);
     }
 
     public void setName(String name) {
@@ -80,6 +80,5 @@ public class Crossroad {
             }
         }
     }
-
 }
 

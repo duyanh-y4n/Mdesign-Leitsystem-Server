@@ -3,10 +3,12 @@ package TrafficSystemLogic;
 public class Area {
     protected int index;
     protected byte[] fields;
+    protected String[] names;
 
     public Area() {
         this.index = 0;
         this.fields = new byte[]{0, 0, 0, 0};
+        this.names = new String[]{"0","0","0","0"};
     }
 
     public Area(int position, byte field0, byte field1, byte field2, byte field3) {
@@ -26,8 +28,16 @@ public class Area {
         return fields;
     }
 
+    public String getName(int index) {
+        return names[index];
+    }
+
     public void setFields(byte[] fields) {
         this.fields = fields;
+    }
+
+    public void setName(String names, int index) {
+        this.names[index] = names;
     }
 
     public void setField(int index, byte field) {

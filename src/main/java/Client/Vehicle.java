@@ -22,6 +22,8 @@ public class Vehicle extends Client {
     protected Area Area_to_book;
     protected Area Area_booked;
 
+    protected byte last_parked= 0;
+
     public Vehicle(String name) {
         this.name = name;
         Area_to_book = new Area();
@@ -300,11 +302,12 @@ public class Vehicle extends Client {
         literalStatus.add(Integer.toString(this.speed));
         return literalStatus;
     }
-    public void Park_Vehicle(){
-        for(int i = 0; i<=3; i++){
-            if(this.Crossroad_current.getArea_of_positions().getField(i)==this.position){
-                this.Crossroad_current.setArea_parked(i,this.getId());
-            }
-        }
+    public void park_Vehicle(){
+        this.getCrossroad_current().setArea_parked(this.name, this.position&0x0F);
+        this.last_parked = this.position;
+    }
+    public void depark_Vehicle(){
+        if (this.getCrossroad_current().getArea_parked().getName(this.position&0x0F)==this.getName())
+        this.getCrossroad_current().setArea_parked("0",this.last_parked&0x0F);
     }
 }

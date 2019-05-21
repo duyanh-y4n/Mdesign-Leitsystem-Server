@@ -75,18 +75,19 @@ public class Trafficsystem {
                 Processed_vehicle.determine_Area();
                 if (Processed_vehicle.book_Area()) {
                     Processed_vehicle.setClearance((byte) 0x01);
-
+                    Processed_vehicle.depark_Vehicle();
                     return Processed_vehicle.getClearance();
                 } else {
                     Processed_vehicle.setClearance((byte) 0x00);
-                    Processed_vehicle.Park_Vehicle();
                     Processed_vehicle.reset_Area();
+                    Processed_vehicle.park_Vehicle();
 
                     return Processed_vehicle.getClearance();
                 }
             } else if ((Processed_vehicle.getPosition() & 0x0F) < 8) {
                 Processed_vehicle.clear_Area();
                 Processed_vehicle.reset_Area();
+
                 Processed_vehicle.setClearance((byte) 0x01);
 
                 return Processed_vehicle.getClearance();
