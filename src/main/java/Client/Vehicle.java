@@ -281,7 +281,7 @@ public class Vehicle extends Client {
                 "\n\t\tDirection: " + literalStatus.get(MessageConfig.VEHICLE_DIRECTION_POSITION_IN_BODY) +
                 "\n\t\tSpeed: " + literalStatus.get(MessageConfig.VEHICLE_SPEED_POSITION_IN_BODY) +
                 "\n\t\tDrive Permission: " + this.clearance+
-                "\n\t\tCrossroad_current: " + this.getCrossroad_current().getName()+
+//                "\n\t\tCrossroad_current: " + this.getCrossroad_current().getName()+
         "\n\t\tArea_to_book: " + this.Area_to_book.getField(0)+ this.Area_to_book.getField(1)+ this.Area_to_book.getField(2)+ this.Area_to_book.getField(3);
     }
 

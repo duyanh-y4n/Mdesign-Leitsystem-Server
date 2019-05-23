@@ -33,6 +33,7 @@ public class LogOutputUI implements Runnable{
 
         this.frame.pack();
         this.frame.setVisible(true);
+        this.frame.setResizable(true);
     }
 
 }

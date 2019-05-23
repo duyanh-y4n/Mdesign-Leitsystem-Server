@@ -23,7 +23,7 @@ public class CrossroadTableUI implements Runnable{
         container.setLayout(new BorderLayout());
         container.setPreferredSize(new Dimension(800, 750));
         JTable table=new JTable(this.crossroadTableModel);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         table.setRowHeight(75);
 
 
@@ -218,7 +218,7 @@ public class CrossroadTableUI implements Runnable{
         };
         table.setDefaultRenderer  ( Object.class, ren );
 
-        container.add(new ScrollPane().add(table));
+        container.add(new JScrollPane(table));
 
     }
 
@@ -239,5 +239,6 @@ public class CrossroadTableUI implements Runnable{
 
         this.frame.pack();
         this.frame.setVisible(true);
+        this.frame.setResizable(true);
     }
 }
