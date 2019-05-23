@@ -24,26 +24,25 @@ public class CrossroadTableProperties {
     RotatedIcon KeineVohrfahrt_up;
 
     public CrossroadTableProperties() {
-        this.HawIcon = this.getImg("src/main/java/UserInterface/TableGUI/logo.png", 157, 75);
+        this.HawIcon = this.getImg("/logo.png", 157, 75);
 
-        this.VehicleIcon_left = this.getImg("src/main/java/UserInterface/TableGUI/Auto.png", 70, 50);
+        this.VehicleIcon_left = this.getImg("/Auto.png", 70, 50);
         this.VehicleIcon_down = new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.UP);
         this.VehicleIcon_right = new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.UPSIDE_DOWN);
         this.VehicleIcon_up = new RotatedIcon(VehicleIcon_left, RotatedIcon.Rotate.DOWN);
 
-        this.Vohrfahrt = this.getImg("src/main/java/UserInterface/TableGUI/Vorfahrtsstrasse.png", 30, 30);
+        this.Vohrfahrt = this.getImg("/Vorfahrtsstrasse.png", 30, 30);
 
-        this.KeineVohrfahrt_left = this.getImg("src/main/java/UserInterface/TableGUI/Vohrfahrtgewaehren.png", 30, 30);
+        this.KeineVohrfahrt_left = this.getImg("/Vohrfahrtgewaehren.png", 30, 30);
         this.KeineVohrfahrt_down = new RotatedIcon(KeineVohrfahrt_left, RotatedIcon.Rotate.UP);
         this.KeineVohrfahrt_up = new RotatedIcon(KeineVohrfahrt_left, RotatedIcon.Rotate.DOWN);
     }
 
     public ImageIcon getImg(String path, int width, int height) {
         try {
-            BufferedImage VehicleImage = ImageIO.read(new File(path));
+            BufferedImage VehicleImage = ImageIO.read(getClass().getResourceAsStream(path));
             Image smallImage = VehicleImage.getScaledInstance(width, height, Image.SCALE_DEFAULT);
             ImageIcon VehicleIcon = new ImageIcon(smallImage);
-
 
             return VehicleIcon;
         } catch (IOException e) {
