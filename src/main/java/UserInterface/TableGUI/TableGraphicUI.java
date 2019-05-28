@@ -33,6 +33,10 @@ public class TableGraphicUI implements Runnable, UserInterface {
         JTable table = new JTable();
         table.setModel(this.vehicleTableModel);
 
+        ImageIcon HAWIcon = new ImageIcon(getClass().getResource("/logo.png"));
+        JLabel HAWIconLabel = new JLabel(HAWIcon, JLabel.CENTER);
+        container.add(HAWIconLabel, BorderLayout.NORTH);
+
 
         container.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -40,11 +44,14 @@ public class TableGraphicUI implements Runnable, UserInterface {
         updateBtn.addActionListener(new TableShowCrossroadAction(this.crossroadTableUI));
         JButton logBtn = new JButton("Log");
         logBtn.addActionListener(new TableShowLogAction(this.logOutputUI));
+        JButton resetAllCrossroadBtn = new JButton("Alle freigeben");
+        resetAllCrossroadBtn.addActionListener(new ResetCrossroadAction());
 
         Container buttonMenu = new JPanel();
         buttonMenu.setLayout(new GridLayout(1, 2));
         buttonMenu.add(updateBtn);
         buttonMenu.add(logBtn);
+        buttonMenu.add(resetAllCrossroadBtn);
         container.add(buttonMenu, BorderLayout.SOUTH);
     }
 
@@ -74,5 +81,6 @@ public class TableGraphicUI implements Runnable, UserInterface {
     @Override
     public void log(String message) {
         this.logTextArea.append(message + "\n");
+        this.logTextArea.setCaretPosition(this.logTextArea.getDocument().getLength());
     }
 }

@@ -1,6 +1,7 @@
 package UserInterface.TableGUI;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 import java.awt.*;
 
 public class LogOutputUI implements Runnable{
@@ -10,12 +11,15 @@ public class LogOutputUI implements Runnable{
     public LogOutputUI(JTextArea logText) {
         this.logText = logText;
         this.logText.setEditable(false);
+//        DefaultCaret caret = (DefaultCaret)this.logText.getCaret();
+//        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
     private void createComponents(Container container) {
         container.setLayout(new BorderLayout());
         container.setPreferredSize(new Dimension(800, 300));
-        container.add(new JScrollPane(this.logText));
+        JScrollPane logScrollPanel = new JScrollPane(this.logText);
+        container.add(logScrollPanel);
     }
 
     public JFrame getFrame() {

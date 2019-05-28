@@ -59,10 +59,10 @@ public class CrossroadTableProperties {
         switch (rowIndex) {
             case 0:
                 if (columnIndex == 0) {
-                    return "Haw links";
+                    return "Schwarz";
                 }
                 if (columnIndex == 1) {
-                    return "Haw rechts";
+                    return "Schwarz";
                 }
                 if (columnIndex == -1 || columnIndex == 10) {
                     return "Schwarz";
