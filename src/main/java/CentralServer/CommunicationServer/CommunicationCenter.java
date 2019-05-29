@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class CommunicationCenter {
     private MessageListener messageListener;
-//    private MessageMulticastSender sender;
     private InfoServer infoSender;
     private VehicleDatabaseDAO vehicleDatabaseDAO;
     private UserInterface UI;
@@ -21,7 +20,6 @@ public class CommunicationCenter {
 
     public CommunicationCenter() throws IOException {
         this.messageListener = new MessageListener(ServerConfig.LISTENER_PORT);
-//        this.sender = new MessageMulticastSender(ServerConfig.MULTICAST_SENDER_PORT);
         this.infoSender = new InfoServer(ServerConfig.MULTICAST_SENDER_PORT);
         this.infoSender.setMessageListenerPort(this.messageListener.getPort());
     }
@@ -34,7 +32,6 @@ public class CommunicationCenter {
     public void startServer() {
         this.logServerInfo();
         this.messageListener.start();
-//        this.sender.start();
         this.infoSender.start();
     }
 
