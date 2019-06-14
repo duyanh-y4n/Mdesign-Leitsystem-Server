@@ -45,11 +45,13 @@
             <artifactId>junit</artifactId>
             <version>4.13-beta-2</version>
         </dependency>
-        <dependency>
-            <groupId>com.y4n</groupId>
-            <artifactId>Java_UDP_Server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<!--        utilities lib as local dependency-->
+<!--        <dependency>-->
+<!--            <groupId>com.y4n</groupId>-->
+<!--            <artifactId>Java_UDP_Server</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <properties>
