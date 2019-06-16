@@ -1,6 +1,6 @@
 package TrafficSystemLogic;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 
 import java.util.ArrayList;

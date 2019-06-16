@@ -1,4 +1,4 @@
-package CentralServer.DataServer;
+package DataServer;
 
 import Client.*;
 

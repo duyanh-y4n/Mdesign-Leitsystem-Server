@@ -1,4 +1,4 @@
-package CentralServer.CommunicationServer;
+package CommunicationServer;
 
 import com.y4n.UDP.UDPUnicast;
 

@@ -1,7 +1,6 @@
-package CentralServer.CommunicationServer;
+package CommunicationServer;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
-import CentralServer.LeitsystemRequestHandler;
+import DataServer.VehicleDatabaseDAO;
 import Message.Enum.RequestID;
 import Message.LeitsystemRequest;
 import Message.MessageConfig;

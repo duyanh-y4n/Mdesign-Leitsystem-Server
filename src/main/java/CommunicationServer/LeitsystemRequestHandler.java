@@ -1,7 +1,8 @@
-package CentralServer;
+package CommunicationServer;
 
-import CentralServer.CommunicationServer.MessageUnicastSender;
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import CommunicationServer.MessageUnicastSender;
+import CommunicationServer.ServerConfig;
+import DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 import Message.Enum.RequestID;
 import Message.Enum.ResponseID;

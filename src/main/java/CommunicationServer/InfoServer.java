@@ -1,6 +1,5 @@
-package CentralServer.CommunicationServer;
+package CommunicationServer;
 
-import CentralServer.ServerConfig;
 import com.y4n.UDP.UDPMulticastSender;
 import com.y4n.Utils.DataFormatUtils;
 import com.y4n.Utils.NetworkUtils;

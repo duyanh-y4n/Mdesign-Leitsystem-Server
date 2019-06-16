@@ -1,4 +1,4 @@
-package CentralServer;
+package CommunicationServer;
 
 public class ServerConfig {
     public static final int LISTENER_PORT = 8080;

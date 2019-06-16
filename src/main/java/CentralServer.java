@@ -1,7 +1,5 @@
-package CentralServer;
-
-import CentralServer.CommunicationServer.CommunicationCenter;
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import CommunicationServer.CommunicationCenter;
+import DataServer.VehicleDatabaseDAO;
 
 public class CentralServer {
     private VehicleDatabaseDAO vehicleDatabaseDAO;

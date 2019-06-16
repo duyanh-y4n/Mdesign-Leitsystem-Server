@@ -1,6 +1,6 @@
 package UserInterface.PrototypGUI;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 import UserInterface.*;
 

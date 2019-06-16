@@ -1,7 +1,6 @@
-import CentralServer.CentralServer;
-import CentralServer.CommunicationServer.CommunicationCenter;
-import CentralServer.DataServer.LeitsystemSimpleVehicleDatabaseDAO;
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import CommunicationServer.CommunicationCenter;
+import DataServer.LeitsystemSimpleVehicleDatabaseDAO;
+import DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 import UserInterface.PrototypGUI.TableGraphicUI;
 import Utils.AlertUtils;

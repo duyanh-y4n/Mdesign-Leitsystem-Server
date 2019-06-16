@@ -1,6 +1,6 @@
 package UserInterface.PrototypGUI;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
+import DataServer.VehicleDatabaseDAO;
 import UserInterface.UserInterface;
 
 import javax.swing.*;

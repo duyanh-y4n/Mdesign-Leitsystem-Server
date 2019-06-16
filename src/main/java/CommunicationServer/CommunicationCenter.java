@@ -1,7 +1,6 @@
-package CentralServer.CommunicationServer;
+package CommunicationServer;
 
-import CentralServer.DataServer.VehicleDatabaseDAO;
-import CentralServer.ServerConfig;
+import DataServer.VehicleDatabaseDAO;
 import UserInterface.UserInterface;
 import com.y4n.Utils.NetworkUtils;
 
