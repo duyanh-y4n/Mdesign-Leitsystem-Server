@@ -1,10 +1,11 @@
 import CommunicationServer.CommunicationCenter;
 import DataServer.VehicleDatabaseDAO;
+import UserInterface.UserInterface;
 
 public class CentralServer {
     private VehicleDatabaseDAO vehicleDatabaseDAO;
     private CommunicationCenter communicationCenter;
-
+    private UserInterface UI;
     public CentralServer() {
     }
 
@@ -19,5 +20,10 @@ public class CentralServer {
 
     public void startServer() {
         this.communicationCenter.startServer();
+    }
+
+    public void setUI(UserInterface ui) {
+        this.UI = ui;
+        this.communicationCenter.setUI(this.UI);
     }
 }

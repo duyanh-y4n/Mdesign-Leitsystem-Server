@@ -17,9 +17,9 @@ public class Main {
 
             CentralServer server = new CentralServer();
             CommunicationCenter communicationCenter = new CommunicationCenter();
-            communicationCenter.setUI(UI);
             server.setCommunicationCenter(communicationCenter);
             server.setVehicleDatabaseDAO(vehicleDatabaseDAO);
+            server.setUI(UI);
             server.startServer();
 
             SwingUtilities.invokeLater(UI);

@@ -1,7 +1,5 @@
 package CommunicationServer;
 
-import CommunicationServer.MessageUnicastSender;
-import CommunicationServer.ServerConfig;
 import DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;
 import Message.Enum.RequestID;
