@@ -1,7 +1,6 @@
-package UserInterface.TableGUI;
+package UserInterface.PrototypGUI;
 
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
 import java.awt.*;
 
 public class LogOutputUI implements Runnable{

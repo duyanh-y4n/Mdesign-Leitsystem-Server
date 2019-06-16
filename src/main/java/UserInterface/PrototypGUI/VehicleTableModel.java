@@ -1,4 +1,4 @@
-package UserInterface.TableGUI;
+package UserInterface.PrototypGUI;
 
 import CentralServer.DataServer.VehicleDatabaseDAO;
 import Client.Vehicle;

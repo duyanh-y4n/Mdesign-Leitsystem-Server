@@ -1,16 +1,13 @@
-package UserInterface.TableGUI;
+package UserInterface.PrototypGUI;
 
 import TrafficSystemLogic.CrossroadList;
-import UserInterface.TableGUI.*;
 
 import javax.imageio.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.awt.image.*;
 
 public class CrossroadTableProperties {
     ImageIcon HawIcon;

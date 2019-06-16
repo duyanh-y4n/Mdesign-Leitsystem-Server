@@ -1,4 +1,4 @@
-package UserInterface.TableGUI;
+package UserInterface.PrototypGUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

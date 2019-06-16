@@ -1,29 +1,8 @@
-package UserInterface.TableGUI;
-
-import CentralServer.DataServer.VehicleDatabaseDAO;
-import Client.Vehicle;
-import TrafficSystemLogic.Crossroad;
-import TrafficSystemLogic.CrossroadList;
-import UserInterface.*;
-import java.util.ArrayList;
-import java.util.List;
-import TrafficSystemLogic.Trafficsystem;
-import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import javax.swing.Icon;
+package UserInterface.PrototypGUI;
 
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-
-
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class CrossroadTableModel extends AbstractTableModel {

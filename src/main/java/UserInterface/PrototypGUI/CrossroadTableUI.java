@@ -1,4 +1,4 @@
-package UserInterface.TableGUI;
+package UserInterface.PrototypGUI;
 
 import javax.swing.*;
 import java.awt.*;
